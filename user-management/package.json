@@ -1,0 +1,44 @@
+{
+  "name": "user-management",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "jest --passWithNoTests --watch",
+    "test:update": "jest --passWithNoTests --updateSnapshot",
+    "format": "npx prettier --write .",
+    "prepare": "cd ../ && husky install ./user-management"
+  },
+  "dependencies": {
+    "axios": "^1.6.2",
+    "clsx": "^2.0.0",
+    "next": "14.0.3",
+    "react": "^18",
+    "react-dom": "^18",
+    "tailwindcss": "^3.3.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
+    "@testing-library/jest-dom": "^6.1.5",
+    "@testing-library/react": "^14.1.2",
+    "@types/jest": "^29.5.10",
+    "@types/node": "^20.10.1",
+    "@types/react": "^18.2.39",
+    "@types/react-dom": "^18.2.17",
+    "autoprefixer": "^10.0.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.0.3",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "husky": "^8.0.3",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "postcss": "^8",
+    "prettier": "^3.1.0",
+    "typescript": "^5.3.2"
+  }
+}
