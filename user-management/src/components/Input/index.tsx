@@ -1,6 +1,6 @@
 import { cls } from '@/utils/cls';
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   variant?: 'primary' | 'danger';
   disabled?: boolean;
   error?: boolean;
