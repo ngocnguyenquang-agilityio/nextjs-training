@@ -14,10 +14,10 @@ import { Button } from '../Button';
 
 const mockLinks = [
   { name: 'Home', href: '/home', icon: HomeIcon },
-  { name: 'Users', href: '/home/users', icon: UserGroupIcon },
+  { name: 'Users', href: '/users', icon: UserGroupIcon },
   {
     name: 'Tech Stacks',
-    href: '/home/techstacks',
+    href: '/techstacks',
     icon: CodeBracketIcon
   }
 ];
