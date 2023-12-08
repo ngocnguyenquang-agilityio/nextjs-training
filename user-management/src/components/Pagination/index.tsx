@@ -26,10 +26,9 @@ export const Pagination = ({ totalPages, standingPage }: PaginationProps) => {
           return (
             <li key={idx}>
               <Button
-                variant="secondary"
+                variant={isActivePage ? 'primary' : 'outlinePrimary'}
                 value={currentPage.toString()}
                 onClick={handleChangePagination}
-                className={cls(`border ${isActivePage ? 'bg-sky-500 text-white hover:bg-sky-600' : 'bg-transparent'}`)}
               >
                 {currentPage.toString()}
               </Button>

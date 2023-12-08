@@ -37,6 +37,24 @@ const mockUsers = [
     entryDate: '2023-12-04T11:04:56.722Z',
     avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/806.jpg',
     id: '3'
+  },
+  {
+    firstName: 'Darwin',
+    lastName: 'Russel',
+    dob: '1995-05-02T01:07:17.675Z',
+    phone: '851-492-8758',
+    entryDate: '2023-12-05T04:47:55.696Z',
+    avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/846.jpg',
+    id: '4'
+  },
+  {
+    firstName: 'Alvah',
+    lastName: 'Wolf',
+    dob: '1969-05-08T20:47:20.177Z',
+    phone: '832-251-6243',
+    entryDate: '2023-12-04T17:43:55.685Z',
+    avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/890.jpg',
+    id: '5'
   }
 ];
 
@@ -93,8 +111,9 @@ export const UserTable = () => {
                   <PencilIcon className="w-5 group-hover:text-white" />
                 </Link>
                 <Button
+                  variant="outlineSecondary"
                   size="sm"
-                  className="group bg-transparent rounded-md border hover:bg-red-400"
+                  className="group hover:bg-red-400"
                   onClick={handleDelete}
                   data-testid={`delete-${id}`}
                 >
