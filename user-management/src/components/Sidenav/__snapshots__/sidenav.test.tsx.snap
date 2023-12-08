@@ -57,8 +57,8 @@ exports[`SideNav Component Should match snapshot 1`] = `
           </a>
           <a
             class="flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm text-black font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3"
-            data-testid="/home/users"
-            href="/home/users"
+            data-testid="/users"
+            href="/users"
           >
             <svg
               aria-hidden="true"
@@ -83,8 +83,8 @@ exports[`SideNav Component Should match snapshot 1`] = `
           </a>
           <a
             class="flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm text-black font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3"
-            data-testid="/home/techstacks"
-            href="/home/techstacks"
+            data-testid="/techstacks"
+            href="/techstacks"
           >
             <svg
               aria-hidden="true"
@@ -191,8 +191,8 @@ exports[`SideNav Component Should match snapshot 1`] = `
         </a>
         <a
           class="flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm text-black font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3"
-          data-testid="/home/users"
-          href="/home/users"
+          data-testid="/users"
+          href="/users"
         >
           <svg
             aria-hidden="true"
@@ -217,8 +217,8 @@ exports[`SideNav Component Should match snapshot 1`] = `
         </a>
         <a
           class="flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm text-black font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3"
-          data-testid="/home/techstacks"
-          href="/home/techstacks"
+          data-testid="/techstacks"
+          href="/techstacks"
         >
           <svg
             aria-hidden="true"

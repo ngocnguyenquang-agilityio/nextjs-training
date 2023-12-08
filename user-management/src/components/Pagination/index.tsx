@@ -29,7 +29,7 @@ export const Pagination = ({ totalPages, standingPage }: PaginationProps) => {
                 variant="secondary"
                 value={currentPage.toString()}
                 onClick={handleChangePagination}
-                className={cls(`bg-transparent border ${isActivePage && 'bg-blue-600 text-white'}`)}
+                className={cls(`border ${isActivePage ? 'bg-sky-500 text-white hover:bg-sky-600' : 'bg-transparent'}`)}
               >
                 {currentPage.toString()}
               </Button>
