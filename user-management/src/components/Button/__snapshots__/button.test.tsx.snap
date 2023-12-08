@@ -6,7 +6,7 @@ exports[`Button Component Should match snapshot 1`] = `
   "baseElement": <body>
     <div>
       <button
-        class="flex items-center text-sm font-md bg-blue-500 transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 px-4 py-2 rounded-md false undefined"
+        class="flex items-center text-sm font-md bg-blue-500 text-white border border-blue-500 transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 px-4 py-2 rounded-md"
       >
         Button
       </button>
@@ -14,7 +14,7 @@ exports[`Button Component Should match snapshot 1`] = `
   </body>,
   "container": <div>
     <button
-      class="flex items-center text-sm font-md bg-blue-500 transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 px-4 py-2 rounded-md false undefined"
+      class="flex items-center text-sm font-md bg-blue-500 text-white border border-blue-500 transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 px-4 py-2 rounded-md"
     >
       Button
     </button>

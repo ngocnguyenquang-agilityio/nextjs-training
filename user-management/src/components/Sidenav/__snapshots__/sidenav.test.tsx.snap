@@ -111,7 +111,7 @@ exports[`SideNav Component Should match snapshot 1`] = `
             class="hidden h-auto w-full grow rounded-md bg-gray-50 md:block"
           />
           <button
-            class="flex items-center text-sm font-md bg-gray-100 text-gray-600 transition-colors hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 active:bg-gray-300 px-4 py-2 rounded-md false gap-2 h-[48px] font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3"
+            class="flex items-center text-sm font-md bg-gray-100 text-gray-600 transition-colors hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 active:bg-gray-300 px-4 py-2 rounded-md gap-2 h-[48px] font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3"
           >
             <svg
               aria-hidden="true"
@@ -245,7 +245,7 @@ exports[`SideNav Component Should match snapshot 1`] = `
           class="hidden h-auto w-full grow rounded-md bg-gray-50 md:block"
         />
         <button
-          class="flex items-center text-sm font-md bg-gray-100 text-gray-600 transition-colors hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 active:bg-gray-300 px-4 py-2 rounded-md false gap-2 h-[48px] font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3"
+          class="flex items-center text-sm font-md bg-gray-100 text-gray-600 transition-colors hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 active:bg-gray-300 px-4 py-2 rounded-md gap-2 h-[48px] font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3"
         >
           <svg
             aria-hidden="true"

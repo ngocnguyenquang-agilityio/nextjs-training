@@ -30,7 +30,7 @@ describe('Pagination Component', () => {
 
   test('Should get correct standing page', async () => {
     const items = await screen.getByTestId('pagination');
-    expect(items.getElementsByClassName('bg-sky-500').length).toBe(1);
+    expect(items.getElementsByClassName('bg-blue-500').length).toBe(1);
   });
 
   //TODO: Testing onClick to change pagination

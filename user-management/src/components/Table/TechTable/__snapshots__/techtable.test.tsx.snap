@@ -82,7 +82,7 @@ exports[`TechTable Component Should match snapshot 1`] = `
                   </svg>
                 </a>
                 <button
-                  class="flex items-center text-sm font-md bg-blue-500 transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 px-2 py-1 rounded-md false group bg-transparent rounded-md border hover:bg-red-400"
+                  class="flex items-center text-sm font-md bg-blue-500 text-white border border-blue-500 transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 px-2 py-1 rounded-md group bg-transparent rounded-md border hover:bg-red-400"
                   data-testid="delete-4"
                 >
                   <svg
@@ -157,7 +157,7 @@ exports[`TechTable Component Should match snapshot 1`] = `
                   </svg>
                 </a>
                 <button
-                  class="flex items-center text-sm font-md bg-blue-500 transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 px-2 py-1 rounded-md false group bg-transparent rounded-md border hover:bg-red-400"
+                  class="flex items-center text-sm font-md bg-blue-500 text-white border border-blue-500 transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 px-2 py-1 rounded-md group bg-transparent rounded-md border hover:bg-red-400"
                   data-testid="delete-5"
                 >
                   <svg
@@ -233,7 +233,7 @@ exports[`TechTable Component Should match snapshot 1`] = `
                   </svg>
                 </a>
                 <button
-                  class="flex items-center text-sm font-md bg-blue-500 transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 px-2 py-1 rounded-md false group bg-transparent rounded-md border hover:bg-red-400"
+                  class="flex items-center text-sm font-md bg-blue-500 text-white border border-blue-500 transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 px-2 py-1 rounded-md group bg-transparent rounded-md border hover:bg-red-400"
                   data-testid="delete-6"
                 >
                   <svg
@@ -337,7 +337,7 @@ exports[`TechTable Component Should match snapshot 1`] = `
                 </svg>
               </a>
               <button
-                class="flex items-center text-sm font-md bg-blue-500 transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 px-2 py-1 rounded-md false group bg-transparent rounded-md border hover:bg-red-400"
+                class="flex items-center text-sm font-md bg-blue-500 text-white border border-blue-500 transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 px-2 py-1 rounded-md group bg-transparent rounded-md border hover:bg-red-400"
                 data-testid="delete-4"
               >
                 <svg
@@ -412,7 +412,7 @@ exports[`TechTable Component Should match snapshot 1`] = `
                 </svg>
               </a>
               <button
-                class="flex items-center text-sm font-md bg-blue-500 transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 px-2 py-1 rounded-md false group bg-transparent rounded-md border hover:bg-red-400"
+                class="flex items-center text-sm font-md bg-blue-500 text-white border border-blue-500 transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 px-2 py-1 rounded-md group bg-transparent rounded-md border hover:bg-red-400"
                 data-testid="delete-5"
               >
                 <svg
@@ -488,7 +488,7 @@ exports[`TechTable Component Should match snapshot 1`] = `
                 </svg>
               </a>
               <button
-                class="flex items-center text-sm font-md bg-blue-500 transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 px-2 py-1 rounded-md false group bg-transparent rounded-md border hover:bg-red-400"
+                class="flex items-center text-sm font-md bg-blue-500 text-white border border-blue-500 transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 px-2 py-1 rounded-md group bg-transparent rounded-md border hover:bg-red-400"
                 data-testid="delete-6"
               >
                 <svg
