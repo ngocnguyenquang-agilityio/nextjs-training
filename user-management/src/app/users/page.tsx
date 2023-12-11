@@ -4,7 +4,6 @@ import { Suspense } from 'react';
 
 // Components
 import { Breadcrumb } from '@/components/Breadcrumb';
-import { Pagination } from '@/components/Pagination';
 import { UserTableSkeleton } from '@/components/Skeleton';
 import { UserTable } from '@/components/Table/UserTable';
 
@@ -38,9 +37,6 @@ const Page = () => {
       <Suspense fallback={<UserTableSkeleton />}>
         <UserTable />
       </Suspense>
-      <div className="mt-5 flex w-full justify-center">
-        <Pagination totalPages={4} standingPage="1" />
-      </div>
     </div>
   );
 };

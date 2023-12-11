@@ -3,62 +3,30 @@
 import { SyntheticEvent } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import useSWR from 'swr';
 
 // Components
 import { Button } from '@/components/Button';
+import { Pagination } from '@/components/Pagination';
+import { UserTableSkeleton } from '@/components/Skeleton';
 
 // Icons
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
 
-const mockUsers = [
-  {
-    firstName: 'Tracy',
-    lastName: 'Windler',
-    dob: '1974-08-01T09:03:58.059Z',
-    phone: '702-259-4678',
-    entryDate: '2023-12-05T01:43:29.662Z',
-    avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/637.jpg',
-    id: '1'
-  },
-  {
-    firstName: 'Donny',
-    lastName: 'Rosenbaum',
-    dob: '2004-10-17T05:20:13.923Z',
-    phone: '592-406-8192',
-    entryDate: '2023-12-04T20:04:41.338Z',
-    avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1244.jpg',
-    id: '2'
-  },
-  {
-    firstName: 'Mauricio',
-    lastName: 'Prosacco',
-    dob: '1986-06-08T15:42:22.143Z',
-    phone: '245-329-6808',
-    entryDate: '2023-12-04T11:04:56.722Z',
-    avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/806.jpg',
-    id: '3'
-  },
-  {
-    firstName: 'Darwin',
-    lastName: 'Russel',
-    dob: '1995-05-02T01:07:17.675Z',
-    phone: '851-492-8758',
-    entryDate: '2023-12-05T04:47:55.696Z',
-    avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/846.jpg',
-    id: '4'
-  },
-  {
-    firstName: 'Alvah',
-    lastName: 'Wolf',
-    dob: '1969-05-08T20:47:20.177Z',
-    phone: '832-251-6243',
-    entryDate: '2023-12-04T17:43:55.685Z',
-    avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/890.jpg',
-    id: '5'
-  }
-];
+// Types
+import { User } from '@/interfaces/user';
+
+// Services
+import { fetcher } from '@/services/fetcher';
+
+// Constants
+import { ENDPOINT } from '@/constants/route';
 
 export const UserTable = () => {
+  const { data, isLoading } = useSWR(ENDPOINT.USER, fetcher);
+
+  if (isLoading) return <UserTableSkeleton />;
+
   const handleDelete = (e: SyntheticEvent) => {
     e.preventDefault();
     //TODO: Handle delete item
@@ -67,63 +35,71 @@ export const UserTable = () => {
   };
 
   return (
-    <table className="w-full text-sm text-left text-gray-500">
-      <thead className="text-xs text-gray-700 uppercase bg-gray-50">
-        <tr>
-          <th scope="col" className="px-6 py-3">
-            Name
-          </th>
-          <th scope="col" className="px-6 py-3">
-            DoB
-          </th>
-          <th scope="col" className="px-6 py-3">
-            Phone
-          </th>
-          <th scope="col" className="px-6 py-3">
-            Entry date
-          </th>
-          <th scope="col" className="px-6 py-3">
-            Actions
-          </th>
-        </tr>
-      </thead>
-      <tbody className="bg-white">
-        {mockUsers.map(({ id, firstName, lastName, dob, phone, entryDate, avatar }) => (
-          <tr key={id} className="odd:bg-white even:bg-gray-50 border-b hover:bg-gray-100 focus:bg-gray-300">
-            <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-              <div className="flex items-center gap-3">
-                <Image alt={`${lastName} avatar`} src={avatar} className="rounded-full" width={28} height={28} />
-                <p>
-                  {lastName} {firstName}
-                </p>
-              </div>
-            </td>
-            <td className="px-6 py-4">{dob.substring(0, 10)}</td>
-            <td className="px-6 py-4">{phone}</td>
-            <td className="px-6 py-4">{entryDate.substring(0, 10)}</td>
-            <td className="px-6 py-4">
-              <div className="flex gap-3">
-                <Link
-                  href={`/edit-user/${id}`}
-                  className="group rounded-md border p-2 hover:bg-blue-400"
-                  data-testid={`edit-${id}`}
-                >
-                  <PencilIcon className="w-5 group-hover:text-white" />
-                </Link>
-                <Button
-                  variant="outlineSecondary"
-                  size="sm"
-                  className="group hover:bg-red-400"
-                  onClick={handleDelete}
-                  data-testid={`delete-${id}`}
-                >
-                  <TrashIcon className="w-5 group-hover:text-white" />
-                </Button>
-              </div>
-            </td>
+    <div>
+      <table className="w-full text-sm text-left text-gray-500">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+          <tr>
+            <th scope="col" className="px-6 py-3">
+              Name
+            </th>
+            <th scope="col" className="px-6 py-3">
+              DoB
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Phone
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Entry date
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Actions
+            </th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody className="bg-white">
+          {data.map(({ id, firstName, lastName, dob, phone, entryDate, avatar }: User) => (
+            <tr key={id} className="odd:bg-white even:bg-gray-50 border-b hover:bg-gray-100 focus:bg-gray-300">
+              <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                <div className="flex items-center gap-3">
+                  <Image alt={`${lastName} avatar`} src={avatar} className="rounded-full" width={28} height={28} />
+                  <p>
+                    {lastName} {firstName}
+                  </p>
+                </div>
+              </td>
+              <td className="px-6 py-4">{dob.substring(0, 10)}</td>
+              <td className="px-6 py-4">{phone}</td>
+              <td className="px-6 py-4">{entryDate.substring(0, 10)}</td>
+              <td className="px-6 py-4">
+                <div className="flex gap-3">
+                  <Link
+                    href={`/edit-user/${id}`}
+                    className="group rounded-md border p-2 hover:bg-blue-400"
+                    data-testid={`edit-${id}`}
+                  >
+                    <PencilIcon className="w-5 group-hover:text-white" />
+                  </Link>
+                  <Button
+                    variant="outlineSecondary"
+                    size="sm"
+                    className="group hover:bg-red-400"
+                    onClick={handleDelete}
+                    data-testid={`delete-${id}`}
+                  >
+                    <TrashIcon className="w-5 group-hover:text-white" />
+                  </Button>
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {data.length > 5 && (
+        <div className="mt-3 flex w-full justify-center">
+          {/* TODO: Handle pagination  */}
+          <Pagination totalPages={4} standingPage="1" />
+        </div>
+      )}
+    </div>
   );
 };

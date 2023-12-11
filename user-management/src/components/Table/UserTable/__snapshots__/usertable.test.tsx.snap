@@ -5,6 +5,501 @@ exports[`UserTable Component Should match snapshot 1`] = `
   "asFragment": [Function],
   "baseElement": <body>
     <div>
+      <div>
+        <table
+          class="w-full text-sm text-left text-gray-500"
+        >
+          <thead
+            class="text-xs text-gray-700 uppercase bg-gray-50"
+          >
+            <tr>
+              <th
+                class="px-6 py-3"
+                scope="col"
+              >
+                Name
+              </th>
+              <th
+                class="px-6 py-3"
+                scope="col"
+              >
+                DoB
+              </th>
+              <th
+                class="px-6 py-3"
+                scope="col"
+              >
+                Phone
+              </th>
+              <th
+                class="px-6 py-3"
+                scope="col"
+              >
+                Entry date
+              </th>
+              <th
+                class="px-6 py-3"
+                scope="col"
+              >
+                Actions
+              </th>
+            </tr>
+          </thead>
+          <tbody
+            class="bg-white"
+          >
+            <tr
+              class="odd:bg-white even:bg-gray-50 border-b hover:bg-gray-100 focus:bg-gray-300"
+            >
+              <td
+                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+              >
+                <div
+                  class="flex items-center gap-3"
+                >
+                  <img
+                    alt="Windler avatar"
+                    class="rounded-full"
+                    data-nimg="1"
+                    decoding="async"
+                    height="28"
+                    loading="lazy"
+                    src="/_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F637.jpg&w=64&q=75"
+                    srcset="/_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F637.jpg&w=32&q=75 1x, /_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F637.jpg&w=64&q=75 2x"
+                    style="color: transparent;"
+                    width="28"
+                  />
+                  <p>
+                    Windler
+                     
+                    Tracy
+                  </p>
+                </div>
+              </td>
+              <td
+                class="px-6 py-4"
+              >
+                1974-08-01
+              </td>
+              <td
+                class="px-6 py-4"
+              >
+                702-259-4678
+              </td>
+              <td
+                class="px-6 py-4"
+              >
+                2023-12-05
+              </td>
+              <td
+                class="px-6 py-4"
+              >
+                <div
+                  class="flex gap-3"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="group rounded-md border p-2 hover:bg-blue-400"
+                    data-testid="edit-1"
+                    fill="none"
+                    href="/edit-user/1"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <button
+                    class="flex items-center text-sm font-md bg-transparent text-gray-600 border transition-colors hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 active:bg-gray-300 px-2 py-1 rounded-md group hover:bg-red-400"
+                    data-testid="delete-1"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="w-5 group-hover:text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr
+              class="odd:bg-white even:bg-gray-50 border-b hover:bg-gray-100 focus:bg-gray-300"
+            >
+              <td
+                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+              >
+                <div
+                  class="flex items-center gap-3"
+                >
+                  <img
+                    alt="Rosenbaum avatar"
+                    class="rounded-full"
+                    data-nimg="1"
+                    decoding="async"
+                    height="28"
+                    loading="lazy"
+                    src="/_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F1244.jpg&w=64&q=75"
+                    srcset="/_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F1244.jpg&w=32&q=75 1x, /_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F1244.jpg&w=64&q=75 2x"
+                    style="color: transparent;"
+                    width="28"
+                  />
+                  <p>
+                    Rosenbaum
+                     
+                    Donny
+                  </p>
+                </div>
+              </td>
+              <td
+                class="px-6 py-4"
+              >
+                2004-10-17
+              </td>
+              <td
+                class="px-6 py-4"
+              >
+                592-406-8192
+              </td>
+              <td
+                class="px-6 py-4"
+              >
+                2023-12-04
+              </td>
+              <td
+                class="px-6 py-4"
+              >
+                <div
+                  class="flex gap-3"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="group rounded-md border p-2 hover:bg-blue-400"
+                    data-testid="edit-2"
+                    fill="none"
+                    href="/edit-user/2"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <button
+                    class="flex items-center text-sm font-md bg-transparent text-gray-600 border transition-colors hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 active:bg-gray-300 px-2 py-1 rounded-md group hover:bg-red-400"
+                    data-testid="delete-2"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="w-5 group-hover:text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr
+              class="odd:bg-white even:bg-gray-50 border-b hover:bg-gray-100 focus:bg-gray-300"
+            >
+              <td
+                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+              >
+                <div
+                  class="flex items-center gap-3"
+                >
+                  <img
+                    alt="Prosacco avatar"
+                    class="rounded-full"
+                    data-nimg="1"
+                    decoding="async"
+                    height="28"
+                    loading="lazy"
+                    src="/_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F806.jpg&w=64&q=75"
+                    srcset="/_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F806.jpg&w=32&q=75 1x, /_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F806.jpg&w=64&q=75 2x"
+                    style="color: transparent;"
+                    width="28"
+                  />
+                  <p>
+                    Prosacco
+                     
+                    Mauricio
+                  </p>
+                </div>
+              </td>
+              <td
+                class="px-6 py-4"
+              >
+                1986-06-08
+              </td>
+              <td
+                class="px-6 py-4"
+              >
+                245-329-6808
+              </td>
+              <td
+                class="px-6 py-4"
+              >
+                2023-12-04
+              </td>
+              <td
+                class="px-6 py-4"
+              >
+                <div
+                  class="flex gap-3"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="group rounded-md border p-2 hover:bg-blue-400"
+                    data-testid="edit-3"
+                    fill="none"
+                    href="/edit-user/3"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <button
+                    class="flex items-center text-sm font-md bg-transparent text-gray-600 border transition-colors hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 active:bg-gray-300 px-2 py-1 rounded-md group hover:bg-red-400"
+                    data-testid="delete-3"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="w-5 group-hover:text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr
+              class="odd:bg-white even:bg-gray-50 border-b hover:bg-gray-100 focus:bg-gray-300"
+            >
+              <td
+                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+              >
+                <div
+                  class="flex items-center gap-3"
+                >
+                  <img
+                    alt="Russel avatar"
+                    class="rounded-full"
+                    data-nimg="1"
+                    decoding="async"
+                    height="28"
+                    loading="lazy"
+                    src="/_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F846.jpg&w=64&q=75"
+                    srcset="/_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F846.jpg&w=32&q=75 1x, /_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F846.jpg&w=64&q=75 2x"
+                    style="color: transparent;"
+                    width="28"
+                  />
+                  <p>
+                    Russel
+                     
+                    Darwin
+                  </p>
+                </div>
+              </td>
+              <td
+                class="px-6 py-4"
+              >
+                1995-05-02
+              </td>
+              <td
+                class="px-6 py-4"
+              >
+                851-492-8758
+              </td>
+              <td
+                class="px-6 py-4"
+              >
+                2023-12-05
+              </td>
+              <td
+                class="px-6 py-4"
+              >
+                <div
+                  class="flex gap-3"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="group rounded-md border p-2 hover:bg-blue-400"
+                    data-testid="edit-4"
+                    fill="none"
+                    href="/edit-user/4"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <button
+                    class="flex items-center text-sm font-md bg-transparent text-gray-600 border transition-colors hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 active:bg-gray-300 px-2 py-1 rounded-md group hover:bg-red-400"
+                    data-testid="delete-4"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="w-5 group-hover:text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr
+              class="odd:bg-white even:bg-gray-50 border-b hover:bg-gray-100 focus:bg-gray-300"
+            >
+              <td
+                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+              >
+                <div
+                  class="flex items-center gap-3"
+                >
+                  <img
+                    alt="Wolf avatar"
+                    class="rounded-full"
+                    data-nimg="1"
+                    decoding="async"
+                    height="28"
+                    loading="lazy"
+                    src="/_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F890.jpg&w=64&q=75"
+                    srcset="/_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F890.jpg&w=32&q=75 1x, /_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F890.jpg&w=64&q=75 2x"
+                    style="color: transparent;"
+                    width="28"
+                  />
+                  <p>
+                    Wolf
+                     
+                    Alvah
+                  </p>
+                </div>
+              </td>
+              <td
+                class="px-6 py-4"
+              >
+                1969-05-08
+              </td>
+              <td
+                class="px-6 py-4"
+              >
+                832-251-6243
+              </td>
+              <td
+                class="px-6 py-4"
+              >
+                2023-12-04
+              </td>
+              <td
+                class="px-6 py-4"
+              >
+                <div
+                  class="flex gap-3"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="group rounded-md border p-2 hover:bg-blue-400"
+                    data-testid="edit-5"
+                    fill="none"
+                    href="/edit-user/5"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <button
+                    class="flex items-center text-sm font-md bg-transparent text-gray-600 border transition-colors hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 active:bg-gray-300 px-2 py-1 rounded-md group hover:bg-red-400"
+                    data-testid="delete-5"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="w-5 group-hover:text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div>
       <table
         class="w-full text-sm text-left text-gray-500"
       >
@@ -96,27 +591,23 @@ exports[`UserTable Component Should match snapshot 1`] = `
               <div
                 class="flex gap-3"
               >
-                <a
+                <svg
+                  aria-hidden="true"
                   class="group rounded-md border p-2 hover:bg-blue-400"
                   data-testid="edit-1"
+                  fill="none"
                   href="/edit-user/1"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  <svg
-                    aria-hidden="true"
-                    class="w-5 group-hover:text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </a>
+                  <path
+                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
                 <button
                   class="flex items-center text-sm font-md bg-transparent text-gray-600 border transition-colors hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 active:bg-gray-300 px-2 py-1 rounded-md group hover:bg-red-400"
                   data-testid="delete-1"
@@ -189,27 +680,23 @@ exports[`UserTable Component Should match snapshot 1`] = `
               <div
                 class="flex gap-3"
               >
-                <a
+                <svg
+                  aria-hidden="true"
                   class="group rounded-md border p-2 hover:bg-blue-400"
                   data-testid="edit-2"
+                  fill="none"
                   href="/edit-user/2"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  <svg
-                    aria-hidden="true"
-                    class="w-5 group-hover:text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </a>
+                  <path
+                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
                 <button
                   class="flex items-center text-sm font-md bg-transparent text-gray-600 border transition-colors hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 active:bg-gray-300 px-2 py-1 rounded-md group hover:bg-red-400"
                   data-testid="delete-2"
@@ -282,27 +769,23 @@ exports[`UserTable Component Should match snapshot 1`] = `
               <div
                 class="flex gap-3"
               >
-                <a
+                <svg
+                  aria-hidden="true"
                   class="group rounded-md border p-2 hover:bg-blue-400"
                   data-testid="edit-3"
+                  fill="none"
                   href="/edit-user/3"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  <svg
-                    aria-hidden="true"
-                    class="w-5 group-hover:text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </a>
+                  <path
+                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
                 <button
                   class="flex items-center text-sm font-md bg-transparent text-gray-600 border transition-colors hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 active:bg-gray-300 px-2 py-1 rounded-md group hover:bg-red-400"
                   data-testid="delete-3"
@@ -375,27 +858,23 @@ exports[`UserTable Component Should match snapshot 1`] = `
               <div
                 class="flex gap-3"
               >
-                <a
+                <svg
+                  aria-hidden="true"
                   class="group rounded-md border p-2 hover:bg-blue-400"
                   data-testid="edit-4"
+                  fill="none"
                   href="/edit-user/4"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  <svg
-                    aria-hidden="true"
-                    class="w-5 group-hover:text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </a>
+                  <path
+                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
                 <button
                   class="flex items-center text-sm font-md bg-transparent text-gray-600 border transition-colors hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 active:bg-gray-300 px-2 py-1 rounded-md group hover:bg-red-400"
                   data-testid="delete-4"
@@ -468,27 +947,23 @@ exports[`UserTable Component Should match snapshot 1`] = `
               <div
                 class="flex gap-3"
               >
-                <a
+                <svg
+                  aria-hidden="true"
                   class="group rounded-md border p-2 hover:bg-blue-400"
                   data-testid="edit-5"
+                  fill="none"
                   href="/edit-user/5"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  <svg
-                    aria-hidden="true"
-                    class="w-5 group-hover:text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </a>
+                  <path
+                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
                 <button
                   class="flex items-center text-sm font-md bg-transparent text-gray-600 border transition-colors hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 active:bg-gray-300 px-2 py-1 rounded-md group hover:bg-red-400"
                   data-testid="delete-5"
@@ -515,517 +990,6 @@ exports[`UserTable Component Should match snapshot 1`] = `
         </tbody>
       </table>
     </div>
-  </body>,
-  "container": <div>
-    <table
-      class="w-full text-sm text-left text-gray-500"
-    >
-      <thead
-        class="text-xs text-gray-700 uppercase bg-gray-50"
-      >
-        <tr>
-          <th
-            class="px-6 py-3"
-            scope="col"
-          >
-            Name
-          </th>
-          <th
-            class="px-6 py-3"
-            scope="col"
-          >
-            DoB
-          </th>
-          <th
-            class="px-6 py-3"
-            scope="col"
-          >
-            Phone
-          </th>
-          <th
-            class="px-6 py-3"
-            scope="col"
-          >
-            Entry date
-          </th>
-          <th
-            class="px-6 py-3"
-            scope="col"
-          >
-            Actions
-          </th>
-        </tr>
-      </thead>
-      <tbody
-        class="bg-white"
-      >
-        <tr
-          class="odd:bg-white even:bg-gray-50 border-b hover:bg-gray-100 focus:bg-gray-300"
-        >
-          <td
-            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-          >
-            <div
-              class="flex items-center gap-3"
-            >
-              <img
-                alt="Windler avatar"
-                class="rounded-full"
-                data-nimg="1"
-                decoding="async"
-                height="28"
-                loading="lazy"
-                src="/_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F637.jpg&w=64&q=75"
-                srcset="/_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F637.jpg&w=32&q=75 1x, /_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F637.jpg&w=64&q=75 2x"
-                style="color: transparent;"
-                width="28"
-              />
-              <p>
-                Windler
-                 
-                Tracy
-              </p>
-            </div>
-          </td>
-          <td
-            class="px-6 py-4"
-          >
-            1974-08-01
-          </td>
-          <td
-            class="px-6 py-4"
-          >
-            702-259-4678
-          </td>
-          <td
-            class="px-6 py-4"
-          >
-            2023-12-05
-          </td>
-          <td
-            class="px-6 py-4"
-          >
-            <div
-              class="flex gap-3"
-            >
-              <a
-                class="group rounded-md border p-2 hover:bg-blue-400"
-                data-testid="edit-1"
-                href="/edit-user/1"
-              >
-                <svg
-                  aria-hidden="true"
-                  class="w-5 group-hover:text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </a>
-              <button
-                class="flex items-center text-sm font-md bg-transparent text-gray-600 border transition-colors hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 active:bg-gray-300 px-2 py-1 rounded-md group hover:bg-red-400"
-                data-testid="delete-1"
-              >
-                <svg
-                  aria-hidden="true"
-                  class="w-5 group-hover:text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </button>
-            </div>
-          </td>
-        </tr>
-        <tr
-          class="odd:bg-white even:bg-gray-50 border-b hover:bg-gray-100 focus:bg-gray-300"
-        >
-          <td
-            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-          >
-            <div
-              class="flex items-center gap-3"
-            >
-              <img
-                alt="Rosenbaum avatar"
-                class="rounded-full"
-                data-nimg="1"
-                decoding="async"
-                height="28"
-                loading="lazy"
-                src="/_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F1244.jpg&w=64&q=75"
-                srcset="/_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F1244.jpg&w=32&q=75 1x, /_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F1244.jpg&w=64&q=75 2x"
-                style="color: transparent;"
-                width="28"
-              />
-              <p>
-                Rosenbaum
-                 
-                Donny
-              </p>
-            </div>
-          </td>
-          <td
-            class="px-6 py-4"
-          >
-            2004-10-17
-          </td>
-          <td
-            class="px-6 py-4"
-          >
-            592-406-8192
-          </td>
-          <td
-            class="px-6 py-4"
-          >
-            2023-12-04
-          </td>
-          <td
-            class="px-6 py-4"
-          >
-            <div
-              class="flex gap-3"
-            >
-              <a
-                class="group rounded-md border p-2 hover:bg-blue-400"
-                data-testid="edit-2"
-                href="/edit-user/2"
-              >
-                <svg
-                  aria-hidden="true"
-                  class="w-5 group-hover:text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </a>
-              <button
-                class="flex items-center text-sm font-md bg-transparent text-gray-600 border transition-colors hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 active:bg-gray-300 px-2 py-1 rounded-md group hover:bg-red-400"
-                data-testid="delete-2"
-              >
-                <svg
-                  aria-hidden="true"
-                  class="w-5 group-hover:text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </button>
-            </div>
-          </td>
-        </tr>
-        <tr
-          class="odd:bg-white even:bg-gray-50 border-b hover:bg-gray-100 focus:bg-gray-300"
-        >
-          <td
-            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-          >
-            <div
-              class="flex items-center gap-3"
-            >
-              <img
-                alt="Prosacco avatar"
-                class="rounded-full"
-                data-nimg="1"
-                decoding="async"
-                height="28"
-                loading="lazy"
-                src="/_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F806.jpg&w=64&q=75"
-                srcset="/_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F806.jpg&w=32&q=75 1x, /_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F806.jpg&w=64&q=75 2x"
-                style="color: transparent;"
-                width="28"
-              />
-              <p>
-                Prosacco
-                 
-                Mauricio
-              </p>
-            </div>
-          </td>
-          <td
-            class="px-6 py-4"
-          >
-            1986-06-08
-          </td>
-          <td
-            class="px-6 py-4"
-          >
-            245-329-6808
-          </td>
-          <td
-            class="px-6 py-4"
-          >
-            2023-12-04
-          </td>
-          <td
-            class="px-6 py-4"
-          >
-            <div
-              class="flex gap-3"
-            >
-              <a
-                class="group rounded-md border p-2 hover:bg-blue-400"
-                data-testid="edit-3"
-                href="/edit-user/3"
-              >
-                <svg
-                  aria-hidden="true"
-                  class="w-5 group-hover:text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </a>
-              <button
-                class="flex items-center text-sm font-md bg-transparent text-gray-600 border transition-colors hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 active:bg-gray-300 px-2 py-1 rounded-md group hover:bg-red-400"
-                data-testid="delete-3"
-              >
-                <svg
-                  aria-hidden="true"
-                  class="w-5 group-hover:text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </button>
-            </div>
-          </td>
-        </tr>
-        <tr
-          class="odd:bg-white even:bg-gray-50 border-b hover:bg-gray-100 focus:bg-gray-300"
-        >
-          <td
-            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-          >
-            <div
-              class="flex items-center gap-3"
-            >
-              <img
-                alt="Russel avatar"
-                class="rounded-full"
-                data-nimg="1"
-                decoding="async"
-                height="28"
-                loading="lazy"
-                src="/_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F846.jpg&w=64&q=75"
-                srcset="/_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F846.jpg&w=32&q=75 1x, /_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F846.jpg&w=64&q=75 2x"
-                style="color: transparent;"
-                width="28"
-              />
-              <p>
-                Russel
-                 
-                Darwin
-              </p>
-            </div>
-          </td>
-          <td
-            class="px-6 py-4"
-          >
-            1995-05-02
-          </td>
-          <td
-            class="px-6 py-4"
-          >
-            851-492-8758
-          </td>
-          <td
-            class="px-6 py-4"
-          >
-            2023-12-05
-          </td>
-          <td
-            class="px-6 py-4"
-          >
-            <div
-              class="flex gap-3"
-            >
-              <a
-                class="group rounded-md border p-2 hover:bg-blue-400"
-                data-testid="edit-4"
-                href="/edit-user/4"
-              >
-                <svg
-                  aria-hidden="true"
-                  class="w-5 group-hover:text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </a>
-              <button
-                class="flex items-center text-sm font-md bg-transparent text-gray-600 border transition-colors hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 active:bg-gray-300 px-2 py-1 rounded-md group hover:bg-red-400"
-                data-testid="delete-4"
-              >
-                <svg
-                  aria-hidden="true"
-                  class="w-5 group-hover:text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </button>
-            </div>
-          </td>
-        </tr>
-        <tr
-          class="odd:bg-white even:bg-gray-50 border-b hover:bg-gray-100 focus:bg-gray-300"
-        >
-          <td
-            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-          >
-            <div
-              class="flex items-center gap-3"
-            >
-              <img
-                alt="Wolf avatar"
-                class="rounded-full"
-                data-nimg="1"
-                decoding="async"
-                height="28"
-                loading="lazy"
-                src="/_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F890.jpg&w=64&q=75"
-                srcset="/_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F890.jpg&w=32&q=75 1x, /_next/image?url=https%3A%2F%2Fcloudflare-ipfs.com%2Fipfs%2FQmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye%2Favatar%2F890.jpg&w=64&q=75 2x"
-                style="color: transparent;"
-                width="28"
-              />
-              <p>
-                Wolf
-                 
-                Alvah
-              </p>
-            </div>
-          </td>
-          <td
-            class="px-6 py-4"
-          >
-            1969-05-08
-          </td>
-          <td
-            class="px-6 py-4"
-          >
-            832-251-6243
-          </td>
-          <td
-            class="px-6 py-4"
-          >
-            2023-12-04
-          </td>
-          <td
-            class="px-6 py-4"
-          >
-            <div
-              class="flex gap-3"
-            >
-              <a
-                class="group rounded-md border p-2 hover:bg-blue-400"
-                data-testid="edit-5"
-                href="/edit-user/5"
-              >
-                <svg
-                  aria-hidden="true"
-                  class="w-5 group-hover:text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </a>
-              <button
-                class="flex items-center text-sm font-md bg-transparent text-gray-600 border transition-colors hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500 active:bg-gray-300 px-2 py-1 rounded-md group hover:bg-red-400"
-                data-testid="delete-5"
-              >
-                <svg
-                  aria-hidden="true"
-                  class="w-5 group-hover:text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
