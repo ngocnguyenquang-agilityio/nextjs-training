@@ -85,7 +85,7 @@ export const UserTable = () => {
               <td className="px-6 py-4">
                 <div className="flex gap-3">
                   <Link
-                    href={`/edit-user/${id}`}
+                    href={`/users/${id}`}
                     className="group rounded-md border p-2 hover:bg-blue-400"
                     data-testid={`edit-${id}`}
                   >
