@@ -1,6 +1,8 @@
 'use client';
 
 import Link from 'next/link';
+import useSWRMutation from 'swr/mutation';
+import { useRouter } from 'next/navigation';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 
 // Components
@@ -9,6 +11,10 @@ import { FormControl } from '@/components/FormControl';
 
 // Constants
 import { REGEX } from '@/constants/regex';
+import { ENDPOINT, ROUTER } from '@/constants/route';
+
+// Services
+import { createUser } from '@/services/fetcher';
 
 interface IFormInput {
   firstName: string;
@@ -16,15 +22,27 @@ interface IFormInput {
   phone: string;
   dob: string;
   entryDate: string;
+  avatar: string;
 }
 
 export const CreateUserForm = () => {
+  const router = useRouter();
   const {
     handleSubmit,
     control,
     formState: { errors }
-  } = useForm<IFormInput>();
-  const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
+  } = useForm<IFormInput>({
+    defaultValues: {
+      entryDate: new Date().toISOString(),
+      dob: new Date().toISOString(),
+      avatar: ''
+    }
+  });
+  const { trigger, isMutating } = useSWRMutation(ENDPOINT.USER, createUser);
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    await trigger(data);
+    router.push(ROUTER.USER);
+  };
   const newDate = new Date();
 
   return (
@@ -109,7 +127,7 @@ export const CreateUserForm = () => {
                 max={newDate.toISOString().substring(0, 10)}
                 labelText="Date of Birth"
                 id="dob"
-                onChange={onChange}
+                onChange={(e) => onChange(new Date(e.target.value).toISOString())}
               />
             )}
           />
@@ -126,6 +144,21 @@ export const CreateUserForm = () => {
                 min={newDate.toISOString().substring(0, 10)}
                 labelText="Entry Date"
                 id="entry-date"
+                onChange={(e) => onChange(new Date(e.target.value).toISOString())}
+              />
+            )}
+          />
+        </div>
+
+        <div className="mb-4">
+          <Controller
+            control={control}
+            name="avatar"
+            render={({ field: { onChange } }) => (
+              <FormControl
+                labelText="Avatar URL"
+                placeholder="https://avatar-link.com"
+                id="avatar"
                 onChange={onChange}
               />
             )}
@@ -141,7 +174,9 @@ export const CreateUserForm = () => {
         >
           Cancel
         </Link>
-        <Button type="submit">Create User</Button>
+        <Button disabled={isMutating} type="submit">
+          Create User
+        </Button>
       </div>
     </form>
   );

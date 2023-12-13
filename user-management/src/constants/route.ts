@@ -1,11 +1,11 @@
 export const ROUTER = {
   HOME: '/home',
   USER: '/users',
-  CREATE_USER: '/users/create',
-  EDIT_USER: 'user/edit',
+  USER_CREATE: '/users/create',
+  USER_EDIT: 'user/edit',
   TECH_STACKS: '/techstacks',
-  CREATE_TECH_STACKS: '/techstacks/create',
-  EDIT_TECH_STACKS: '/techstacks/edit'
+  TECH_STACKS_CREATE: '/techstacks/create',
+  TECH_STACKS_EDIT: '/techstacks/edit'
 };
 
 export const ENDPOINT = {
