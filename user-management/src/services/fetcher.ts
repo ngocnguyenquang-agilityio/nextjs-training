@@ -1,6 +1,9 @@
 // Libs
 import axios, { AxiosError } from 'axios';
 
+// Types
+import { User } from '@/interfaces/user';
+
 /**
  * Axios get method
  * @param {string} endpoint
@@ -21,4 +24,8 @@ export const fetcher = async (endpoint: string) => {
       return { errorMessage: 'An error occurred' };
     }
   }
+};
+
+export const createUser = async (endpoint: string, { arg }: { arg: User }) => {
+  await axios.post(process.env.NEXT_PUBLIC_API_URL + endpoint, arg);
 };

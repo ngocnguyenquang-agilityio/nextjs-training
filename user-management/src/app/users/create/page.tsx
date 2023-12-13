@@ -19,7 +19,7 @@ const Page = async () => {
           { label: 'Users', href: ROUTER.USER },
           {
             label: 'Create User',
-            href: ROUTER.CREATE_USER
+            href: ROUTER.USER_CREATE
           }
         ]}
       />

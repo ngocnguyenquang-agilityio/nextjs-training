@@ -25,6 +25,12 @@ import { ENDPOINT } from '@/constants/route';
 export const UserTable = () => {
   const { data, isLoading } = useSWR(ENDPOINT.USER, fetcher);
 
+  const getDefaultAvatar = (firstName: string, lastName: string) => {
+    const defaultAvatar = `https://ui-avatars.com/api/?name=${lastName}+${firstName}&rounded=true&background=random&size=28`;
+
+    return defaultAvatar;
+  };
+
   if (isLoading) return <UserTableSkeleton />;
 
   const handleDelete = (e: SyntheticEvent) => {
@@ -61,7 +67,13 @@ export const UserTable = () => {
             <tr key={id} className="odd:bg-white even:bg-gray-50 border-b hover:bg-gray-100 focus:bg-gray-300">
               <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                 <div className="flex items-center gap-3">
-                  <Image alt={`${lastName} avatar`} src={avatar} className="rounded-full" width={28} height={28} />
+                  <Image
+                    alt={`${lastName} avatar`}
+                    src={avatar ? avatar : getDefaultAvatar(firstName, lastName)}
+                    className="rounded-full"
+                    width={28}
+                    height={28}
+                  />
                   <p>
                     {lastName} {firstName}
                   </p>
