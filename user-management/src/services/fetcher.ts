@@ -29,3 +29,7 @@ export const fetcher = async (endpoint: string) => {
 export const createUser = async (endpoint: string, { arg }: { arg: User }) => {
   await axios.post(process.env.NEXT_PUBLIC_API_URL + endpoint, arg);
 };
+
+export const editUser = async (endpoint: string, { arg }: { arg: User }) => {
+  await axios.put(process.env.NEXT_PUBLIC_API_URL + endpoint, arg);
+};
