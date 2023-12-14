@@ -17,13 +17,13 @@ import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
 import { User } from '@/interfaces/user';
 
 // Services
-import { fetcher } from '@/services/fetcher';
+import { deleteUser, fetcher } from '@/services/fetcher';
 
 // Constants
 import { API_ROUTER } from '@/constants/routes';
 
 export const UserTable = () => {
-  const { data, isLoading } = useSWR(API_ROUTER.USER_LIST, fetcher);
+  const { data, isLoading, mutate } = useSWR(API_ROUTER.USER_LIST, fetcher);
 
   const getDefaultAvatar = (firstName: string, lastName: string) => {
     const defaultAvatar = `https://ui-avatars.com/api/?name=${lastName}+${firstName}&rounded=true&background=random&size=28`;
@@ -33,11 +33,17 @@ export const UserTable = () => {
 
   if (isLoading) return <UserTableSkeleton />;
 
-  const handleDelete = (e: SyntheticEvent) => {
-    e.preventDefault();
-    //TODO: Handle delete item
+  const handleDelete = async (e: SyntheticEvent, id: string) => {
+    const newDate = data.filter((item: User) => item.id !== id);
+    try {
+      await mutate(newDate, false);
+      await deleteUser(id);
 
-    alert('Delete button clicked!'); //Remove later
+      // TODO: Implement toast
+      alert(`Deleted item ${id}`);
+    } catch {
+      throw new Error('Something wrong when delete user');
+    }
   };
 
   return (
@@ -95,7 +101,7 @@ export const UserTable = () => {
                     variant="outlineSecondary"
                     size="sm"
                     className="group hover:bg-red-400"
-                    onClick={handleDelete}
+                    onClick={(e) => handleDelete(e, id!)}
                     data-testid={`delete-${id}`}
                   >
                     <TrashIcon className="w-5 group-hover:text-white" />
