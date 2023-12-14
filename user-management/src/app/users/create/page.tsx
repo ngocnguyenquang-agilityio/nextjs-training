@@ -5,21 +5,21 @@ import { Breadcrumb } from '@/components/Breadcrumb';
 import { CreateUserForm } from '@/components/Forms/CreateUserForm';
 
 // Constants
-import { ROUTER } from '@/constants/route';
+import { PAGE_ROUTES } from '@/constants/routes';
 
 export const metadata: Metadata = {
   title: 'Create User'
 };
 
-const Page = async () => {
+const CreateUserPage = async () => {
   return (
     <main>
       <Breadcrumb
         breadcrumbs={[
-          { label: 'Users', href: ROUTER.USER },
+          { label: 'Users', href: PAGE_ROUTES.USER_LIST },
           {
             label: 'Create User',
-            href: ROUTER.USER_CREATE
+            href: PAGE_ROUTES.USER_CREATE
           }
         ]}
       />
@@ -28,4 +28,4 @@ const Page = async () => {
   );
 };
 
-export default Page;
+export default CreateUserPage;

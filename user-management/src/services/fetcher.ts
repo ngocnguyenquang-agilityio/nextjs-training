@@ -26,6 +26,18 @@ export const fetcher = async (endpoint: string) => {
   }
 };
 
+const apiClient = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  timeout: 5000,
+  headers: {
+    Accept: 'application/json'
+  }
+});
+
 export const createUser = async (endpoint: string, { arg }: { arg: User }) => {
-  await axios.post(process.env.NEXT_PUBLIC_API_URL + endpoint, arg);
+  await apiClient.post(endpoint, arg);
+};
+
+export const editUser = async (endpoint: string, { arg }: { arg: User }) => {
+  await apiClient.put(endpoint, arg);
 };

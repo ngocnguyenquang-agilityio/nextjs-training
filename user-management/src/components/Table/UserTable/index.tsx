@@ -20,10 +20,10 @@ import { User } from '@/interfaces/user';
 import { fetcher } from '@/services/fetcher';
 
 // Constants
-import { ENDPOINT } from '@/constants/route';
+import { API_ROUTER } from '@/constants/routes';
 
 export const UserTable = () => {
-  const { data, isLoading } = useSWR(ENDPOINT.USER, fetcher);
+  const { data, isLoading } = useSWR(API_ROUTER.USER_LIST, fetcher);
 
   const getDefaultAvatar = (firstName: string, lastName: string) => {
     const defaultAvatar = `https://ui-avatars.com/api/?name=${lastName}+${firstName}&rounded=true&background=random&size=28`;
@@ -85,7 +85,7 @@ export const UserTable = () => {
               <td className="px-6 py-4">
                 <div className="flex gap-3">
                   <Link
-                    href={`/edit-user/${id}`}
+                    href={`/users/${id}`}
                     className="group rounded-md border p-2 hover:bg-blue-400"
                     data-testid={`edit-${id}`}
                   >
