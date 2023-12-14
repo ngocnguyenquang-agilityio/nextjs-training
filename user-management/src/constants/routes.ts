@@ -11,6 +11,6 @@ export const PAGE_ROUTES = {
   USER_CREATE: '/users/create',
   USER_DETAIL: (id: string): string => `/users/${id}`,
   TECH_LIST: '/techstacks',
-  TECH_STACKS_CREATE: '/techstacks/create',
+  TECH_CREATE: '/techstacks/create',
   TECH_DETAIL: (id: string): string => `/techstacks/${id}`
 };

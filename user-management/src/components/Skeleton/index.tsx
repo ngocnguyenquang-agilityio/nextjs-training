@@ -95,6 +95,8 @@ export const TechTableSkeleton = () => {
         <TechTableRowSkeleton />
         <TechTableRowSkeleton />
         <TechTableRowSkeleton />
+        <TechTableRowSkeleton />
+        <TechTableRowSkeleton />
       </tbody>
     </table>
   );
