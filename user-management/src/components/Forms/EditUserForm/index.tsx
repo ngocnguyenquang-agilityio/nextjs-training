@@ -1,7 +1,8 @@
 'use client';
 
-import Link from 'next/link';
+import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 
@@ -14,7 +15,10 @@ import { REGEX } from '@/constants/regex';
 import { API_ROUTER, PAGE_ROUTES } from '@/constants/routes';
 
 // Services
-import { createUser } from '@/services/fetcher';
+import { editUser, fetcher } from '@/services/fetcher';
+
+// Helpers
+import { convertDateValue } from '@/utils/helpers';
 
 interface IFormInput {
   firstName: string;
@@ -25,25 +29,35 @@ interface IFormInput {
   avatar: string;
 }
 
-export const CreateUserForm = () => {
+export const EditUserForm = ({ id }: { id: string }) => {
   const router = useRouter();
+  const { data, isLoading } = useSWR(API_ROUTER.USER_DETAIL(id), fetcher);
   const {
     handleSubmit,
     control,
     formState: { errors }
-  } = useForm<IFormInput>({
-    defaultValues: {
-      entryDate: new Date().toISOString(),
-      dob: new Date().toISOString(),
-      avatar: ''
-    }
-  });
-  const { trigger, isMutating } = useSWRMutation(API_ROUTER.USER_LIST, createUser);
+  } = useForm<IFormInput>({ values: data });
+
+  const { trigger, isMutating } = useSWRMutation(API_ROUTER.USER_DETAIL(id), editUser);
+
+  // TODO: Implement UserForm skeleton
+  if (isLoading)
+    return (
+      <div className="absolute right-1/2 bottom-1/2 transform translate-x-1/2 translate-y-1/2">
+        <div className="border-t-transparent border-solid animate-spin rounded-full border-blue-400 border-8 h-64 w-64" />
+      </div>
+    );
+
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    await trigger(data);
+    try {
+      await trigger(data);
+    } catch {
+      throw new Error('Edit user failed!');
+    }
+
     router.push(PAGE_ROUTES.USER_LIST);
   };
-  const newDate = new Date();
+  const newDate = new Date().toISOString().substring(0, 10);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -63,6 +77,7 @@ export const CreateUserForm = () => {
                   placeholder="First name"
                   id="firstName"
                   required
+                  defaultValue={data.firstName}
                   error={errors?.firstName ? true : false}
                   errorText={errors?.firstName?.message}
                   onChange={onChange}
@@ -85,6 +100,7 @@ export const CreateUserForm = () => {
                   placeholder="Last name"
                   id="lastName"
                   required
+                  defaultValue={data.lastName}
                   error={errors?.lastName ? true : false}
                   errorText={errors?.lastName?.message}
                   onChange={onChange}
@@ -108,6 +124,7 @@ export const CreateUserForm = () => {
                 placeholder="123-456-7891"
                 id="phone"
                 required
+                defaultValue={data.phone}
                 error={errors?.phone ? true : false}
                 errorText={errors?.phone?.message}
                 onChange={onChange}
@@ -123,11 +140,11 @@ export const CreateUserForm = () => {
             render={({ field: { onChange } }) => (
               <FormControl
                 type="date"
-                defaultValue={newDate.toISOString().substring(0, 10)}
-                max={newDate.toISOString().substring(0, 10)}
+                defaultValue={data.dob.substring(0, 10)}
+                max={newDate}
                 labelText="Date of Birth"
                 id="dob"
-                onChange={(e) => onChange(new Date(e.target.value).toISOString())}
+                onChange={(e) => onChange(convertDateValue(e.target.value))}
               />
             )}
           />
@@ -140,11 +157,11 @@ export const CreateUserForm = () => {
             render={({ field: { onChange } }) => (
               <FormControl
                 type="date"
-                defaultValue={newDate.toISOString().substring(0, 10)}
-                min={newDate.toISOString().substring(0, 10)}
+                defaultValue={data.entryDate.substring(0, 10)}
+                min={data.entryDate.substring(0, 10)}
                 labelText="Entry Date"
                 id="entry-date"
-                onChange={(e) => onChange(new Date(e.target.value).toISOString())}
+                onChange={(e) => onChange(convertDateValue(e.target.value))}
               />
             )}
           />
@@ -159,6 +176,7 @@ export const CreateUserForm = () => {
                 labelText="Avatar URL"
                 placeholder="https://avatar-link.com"
                 id="avatar"
+                defaultValue={data.avatar || ''}
                 onChange={onChange}
               />
             )}
@@ -175,7 +193,7 @@ export const CreateUserForm = () => {
           Cancel
         </Link>
         <Button disabled={isMutating} type="submit">
-          Create User
+          Edit User
         </Button>
       </div>
     </form>
