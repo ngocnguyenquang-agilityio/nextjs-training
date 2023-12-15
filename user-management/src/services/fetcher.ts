@@ -33,18 +33,14 @@ export const fetcher = async (endpoint: string) => {
   }
 };
 
-export const createUser = async (endpoint: string, { arg }: { arg: User }) => {
+export const postMethod = async <T>(endpoint: string, { arg }: { arg: T }) => {
   await apiClient.post(endpoint, arg);
 };
 
-export const editUser = async (endpoint: string, { arg }: { arg: User }) => {
+export const putMethod = async <T>(endpoint: string, { arg }: { arg: T }) => {
   await apiClient.put(endpoint, arg);
 };
 
-export const deleteUser = async (id: string) => {
-  await apiClient.delete(API_ROUTER.USER_DETAIL(id));
-};
-
-export const createTech = async (endpoint: string, { arg }: { arg: Tech }) => {
-  await apiClient.post(endpoint, arg);
+export const deleteMethod = async (endpoint: string) => {
+  await apiClient.delete(endpoint);
 };

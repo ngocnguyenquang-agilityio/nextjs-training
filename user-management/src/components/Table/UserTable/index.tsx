@@ -17,7 +17,7 @@ import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
 import { User } from '@/interfaces/user';
 
 // Services
-import { deleteUser, fetcher } from '@/services/fetcher';
+import { deleteMethod, fetcher } from '@/services/fetcher';
 
 // Constants
 import { API_ROUTER } from '@/constants/routes';
@@ -37,7 +37,7 @@ export const UserTable = () => {
     const newDate = data.filter((item: User) => item.id !== id);
     try {
       await mutate(newDate, false);
-      await deleteUser(id);
+      await deleteMethod(API_ROUTER.USER_DETAIL(id));
 
       // TODO: Implement toast
       alert(`Deleted item ${id}`);

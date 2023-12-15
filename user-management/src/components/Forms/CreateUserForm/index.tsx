@@ -14,7 +14,7 @@ import { REGEX } from '@/constants/regex';
 import { API_ROUTER, PAGE_ROUTES } from '@/constants/routes';
 
 // Services
-import { createUser } from '@/services/fetcher';
+import { postMethod } from '@/services/fetcher';
 
 interface IFormInput {
   firstName: string;
@@ -38,7 +38,7 @@ export const CreateUserForm = () => {
       avatar: ''
     }
   });
-  const { trigger, isMutating } = useSWRMutation(API_ROUTER.USER_LIST, createUser);
+  const { trigger, isMutating } = useSWRMutation(API_ROUTER.USER_LIST, postMethod);
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     await trigger(data);
     router.push(PAGE_ROUTES.USER_LIST);
