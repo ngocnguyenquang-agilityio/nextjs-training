@@ -15,7 +15,7 @@ import { REGEX } from '@/constants/regex';
 import { API_ROUTER, PAGE_ROUTES } from '@/constants/routes';
 
 // Services
-import { editUser, fetcher } from '@/services/fetcher';
+import { putMethod, fetcher } from '@/services/fetcher';
 
 // Helpers
 import { convertDateValue } from '@/utils/helpers';
@@ -38,7 +38,7 @@ export const EditUserForm = ({ id }: { id: string }) => {
     formState: { errors }
   } = useForm<IFormInput>({ values: data });
 
-  const { trigger, isMutating } = useSWRMutation(API_ROUTER.USER_DETAIL(id), editUser);
+  const { trigger, isMutating } = useSWRMutation(API_ROUTER.USER_DETAIL(id), putMethod);
 
   // TODO: Implement UserForm skeleton
   if (isLoading)

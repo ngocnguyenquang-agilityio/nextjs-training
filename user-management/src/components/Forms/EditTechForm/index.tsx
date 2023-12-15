@@ -1,8 +1,7 @@
 'use client';
 
+import useSWR from 'swr';
 import Link from 'next/link';
-import useSWRMutation from 'swr/mutation';
-import { useRouter } from 'next/navigation';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 
 // Components
@@ -14,29 +13,31 @@ import { REGEX } from '@/constants/regex';
 import { API_ROUTER, PAGE_ROUTES } from '@/constants/routes';
 
 // Services
-import { postMethod } from '@/services/fetcher';
+import { fetcher } from '@/services/fetcher';
 
 interface IFormInput {
   name: string;
   logo: string;
 }
 
-export const CreateTechForm = () => {
-  const router = useRouter();
+export const EditTechForm = ({ id }: { id: string }) => {
+  const { data, isLoading } = useSWR(API_ROUTER.TECH_DETAIL(id), fetcher);
   const {
     handleSubmit,
     control,
     formState: { errors }
-  } = useForm<IFormInput>({
-    defaultValues: {
-      logo: ''
-    }
-  });
+  } = useForm<IFormInput>({ values: data });
 
-  const { trigger, isMutating } = useSWRMutation(API_ROUTER.TECH_LIST, postMethod);
+  // TODO: Implement TechForm skeleton
+  if (isLoading)
+    return (
+      <div className="absolute right-1/2 bottom-1/2 transform translate-x-1/2 translate-y-1/2">
+        <div className="border-t-transparent border-solid animate-spin rounded-full border-blue-400 border-8 h-64 w-64" />
+      </div>
+    );
+
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    await trigger(data);
-    router.push(PAGE_ROUTES.TECH_LIST);
+    // TODO: Handle edit tech
   };
 
   return (
@@ -53,9 +54,9 @@ export const CreateTechForm = () => {
             render={({ field: { onChange } }) => (
               <FormControl
                 labelText="Tech name"
-                placeholder="Tech name"
                 id="name"
                 required
+                defaultValue={data.name}
                 error={errors?.name ? true : false}
                 errorText={errors?.name?.message}
                 onChange={onChange}
@@ -69,7 +70,13 @@ export const CreateTechForm = () => {
             control={control}
             name="logo"
             render={({ field: { onChange } }) => (
-              <FormControl labelText="Logo URL" placeholder="https://avatar-link.com" id="logo" onChange={onChange} />
+              <FormControl
+                labelText="Logo URL"
+                placeholder="https://avatar-link.com"
+                id="logo"
+                defaultValue={data.logo || ''}
+                onChange={onChange}
+              />
             )}
           />
         </div>
@@ -81,9 +88,7 @@ export const CreateTechForm = () => {
         >
           Cancel
         </Link>
-        <Button disabled={isMutating} type="submit">
-          Create Tech
-        </Button>
+        <Button type="submit">Edit Tech</Button>
       </div>
     </form>
   );

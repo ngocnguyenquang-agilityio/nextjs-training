@@ -13,7 +13,7 @@ import { TechTableSkeleton } from '@/components/Skeleton';
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
 
 // Constants
-import { API_ROUTER } from '@/constants/routes';
+import { API_ROUTER, PAGE_ROUTES } from '@/constants/routes';
 
 // Services
 import { fetcher } from '@/services/fetcher';
@@ -67,7 +67,7 @@ export const TechTable = () => {
             <td className="px-6 py-4">
               <div className="flex gap-3">
                 <Link
-                  href={`/edit-tech/${id}`}
+                  href={PAGE_ROUTES.TECH_DETAIL(id!)}
                   className="group rounded-md border p-2 hover:bg-blue-400"
                   data-testid={`edit-${id}`}
                 >
