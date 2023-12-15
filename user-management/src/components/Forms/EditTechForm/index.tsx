@@ -1,7 +1,9 @@
 'use client';
 
 import useSWR from 'swr';
+import useSWRMutation from 'swr/mutation';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 
 // Components
@@ -13,7 +15,7 @@ import { REGEX } from '@/constants/regex';
 import { API_ROUTER, PAGE_ROUTES } from '@/constants/routes';
 
 // Services
-import { fetcher } from '@/services/fetcher';
+import { putMethod, fetcher } from '@/services/fetcher';
 
 interface IFormInput {
   name: string;
@@ -21,12 +23,15 @@ interface IFormInput {
 }
 
 export const EditTechForm = ({ id }: { id: string }) => {
+  const router = useRouter();
   const { data, isLoading } = useSWR(API_ROUTER.TECH_DETAIL(id), fetcher);
   const {
     handleSubmit,
     control,
     formState: { errors }
   } = useForm<IFormInput>({ values: data });
+
+  const { trigger, isMutating } = useSWRMutation(API_ROUTER.TECH_DETAIL(id), putMethod);
 
   // TODO: Implement TechForm skeleton
   if (isLoading)
@@ -37,7 +42,13 @@ export const EditTechForm = ({ id }: { id: string }) => {
     );
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    // TODO: Handle edit tech
+    try {
+      await trigger(data);
+    } catch {
+      throw new Error('Edit tech stack failed!');
+    }
+
+    router.push(PAGE_ROUTES.TECH_LIST);
   };
 
   return (
@@ -88,7 +99,9 @@ export const EditTechForm = ({ id }: { id: string }) => {
         >
           Cancel
         </Link>
-        <Button type="submit">Edit Tech</Button>
+        <Button disabled={isMutating} type="submit">
+          Edit Tech
+        </Button>
       </div>
     </form>
   );
