@@ -16,13 +16,13 @@ import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
 import { API_ROUTER, PAGE_ROUTES } from '@/constants/routes';
 
 // Services
-import { fetcher } from '@/services/fetcher';
+import { deleteMethod, fetcher } from '@/services/fetcher';
 
 // Types
 import { Tech } from '@/interfaces/tech';
 
 export const TechTable = () => {
-  const { data, isLoading } = useSWR(API_ROUTER.TECH_LIST, fetcher);
+  const { data, isLoading, mutate } = useSWR(API_ROUTER.TECH_LIST, fetcher);
 
   const getDefaultLogo = (name: string) => {
     return `https://ui-avatars.com/api/?name=${name}&rounded=true&background=random&size=28`;
@@ -30,11 +30,17 @@ export const TechTable = () => {
 
   if (isLoading) return <TechTableSkeleton />;
 
-  const handleDelete = (e: SyntheticEvent) => {
-    e.preventDefault();
-    //TODO: Handle delete item
+  const handleDelete = async (id: string) => {
+    const newTechList = data.filter((item: Tech) => item.id !== id);
+    try {
+      await mutate(newTechList, false);
+      await deleteMethod(API_ROUTER.TECH_DETAIL(id));
 
-    alert('Delete button clicked!'); //Remove later
+      // TODO: Implement toast
+      alert('Deleted!');
+    } catch {
+      throw new Error('Something wrong when delete this tech');
+    }
   };
 
   return (
@@ -77,7 +83,7 @@ export const TechTable = () => {
                   variant="outlineSecondary"
                   size="sm"
                   className="group hover:bg-red-400"
-                  onClick={handleDelete}
+                  onClick={() => handleDelete(id!)}
                   data-testid={`delete-${id}`}
                 >
                   <TrashIcon className="w-5 group-hover:text-white" />
