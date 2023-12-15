@@ -3,6 +3,9 @@ import axios, { AxiosError } from 'axios';
 
 // Types
 import { User } from '@/interfaces/user';
+import { Tech } from '@/interfaces/tech';
+
+// Constants
 import { API_ROUTER } from '@/constants/routes';
 
 const apiClient = axios.create({
@@ -40,4 +43,8 @@ export const editUser = async (endpoint: string, { arg }: { arg: User }) => {
 
 export const deleteUser = async (id: string) => {
   await apiClient.delete(API_ROUTER.USER_DETAIL(id));
+};
+
+export const createTech = async (endpoint: string, { arg }: { arg: Tech }) => {
+  await apiClient.post(endpoint, arg);
 };
