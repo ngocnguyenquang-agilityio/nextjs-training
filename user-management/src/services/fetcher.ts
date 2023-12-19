@@ -1,13 +1,6 @@
 // Libs
 import axios, { AxiosError } from 'axios';
 
-// Types
-import { User } from '@/interfaces/user';
-import { Tech } from '@/interfaces/tech';
-
-// Constants
-import { API_ROUTER } from '@/constants/routes';
-
 const apiClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   timeout: 5000,

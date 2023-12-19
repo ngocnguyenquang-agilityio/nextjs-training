@@ -22,14 +22,11 @@ import { deleteMethod, fetcher } from '@/services/fetcher';
 // Constants
 import { API_ROUTER } from '@/constants/routes';
 
+// Helpers
+import { getImageUrl } from '@/utils/helpers';
+
 export const UserTable = () => {
   const { data, isLoading, mutate } = useSWR(API_ROUTER.USER_LIST, fetcher);
-
-  const getDefaultAvatar = (firstName: string, lastName: string) => {
-    const defaultAvatar = `https://ui-avatars.com/api/?name=${lastName}+${firstName}&rounded=true&background=random&size=28`;
-
-    return defaultAvatar;
-  };
 
   if (isLoading) return <UserTableSkeleton />;
 
@@ -75,7 +72,7 @@ export const UserTable = () => {
                 <div className="flex items-center gap-3">
                   <Image
                     alt={`${lastName} avatar`}
-                    src={avatar ? avatar : getDefaultAvatar(firstName, lastName)}
+                    src={getImageUrl(lastName, avatar)}
                     className="rounded-full"
                     width={28}
                     height={28}

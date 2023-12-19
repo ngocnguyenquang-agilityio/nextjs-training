@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import useSWR from 'swr';
-import { SyntheticEvent } from 'react';
 
 // Components
 import { Button } from '@/components/Button';
@@ -21,12 +20,11 @@ import { deleteMethod, fetcher } from '@/services/fetcher';
 // Types
 import { Tech } from '@/interfaces/tech';
 
+// Helpers
+import { getImageUrl } from '@/utils/helpers';
+
 export const TechTable = () => {
   const { data, isLoading, mutate } = useSWR(API_ROUTER.TECH_LIST, fetcher);
-
-  const getDefaultLogo = (name: string) => {
-    return `https://ui-avatars.com/api/?name=${name}&rounded=true&background=random&size=28`;
-  };
 
   if (isLoading) return <TechTableSkeleton />;
 
@@ -62,7 +60,7 @@ export const TechTable = () => {
               <div className="flex items-center gap-3">
                 <Image
                   alt={`${name} logo`}
-                  src={logo ? logo : getDefaultLogo(name)}
+                  src={getImageUrl(name, logo)}
                   className="rounded-full"
                   width={28}
                   height={28}

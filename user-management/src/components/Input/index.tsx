@@ -1,7 +1,7 @@
 import { cls } from '@/utils/cls';
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  variant?: 'primary' | 'danger';
+  variant?: 'primary' | 'danger' | 'outline';
   disabled?: boolean;
   error?: boolean;
 }
@@ -12,7 +12,8 @@ const classes = {
   variant: {
     primary:
       'border-gray-500 focus:ring-blue-500 outline-none focus:border-blue-500 placeholder-gray-400 focus:outline-2 focus:outline-blue-500 focus:border-none',
-    danger: 'focus:outline-none border-red-600 focus:border-red-600'
+    danger: 'focus:outline-none border-red-600 focus:border-red-600',
+    outline: 'border-none outline-none focus:border-none focus:outline-none'
   }
 };
 
@@ -23,7 +24,8 @@ export const Input = ({ className, variant = 'primary', error = false, disabled 
       disabled={disabled}
       className={cls(`
       ${classes.base} 
-      ${error ? classes.variant['danger'] : classes.variant['primary']} 
+      ${classes.variant[variant]}
+      ${error && classes.variant['danger']} 
       ${disabled && classes.disabled} 
       ${className}`)}
     />
