@@ -1,0 +1,101 @@
+'use client';
+
+import { useState } from 'react';
+import Image from 'next/image';
+
+// Components
+import { Input } from '../Input';
+
+// Hooks
+import { useClickOutside } from '@/hooks/useClickOutside';
+
+interface IOptions {
+  id: string;
+  name: string;
+  image?: string;
+}
+
+interface MultipleSelectProps {
+  id: string;
+  label: string;
+  options: IOptions[];
+  selectedOptions?: IOptions[];
+  onSelect: (id: string) => void;
+  onRemove: (id: string) => void;
+}
+
+export const MultipleSelect = ({
+  id,
+  label,
+  options,
+  selectedOptions = [],
+  onSelect,
+  onRemove
+}: MultipleSelectProps) => {
+  const [openOptions, setOpenOptions] = useState(false);
+  const showOptions = () => {
+    setOpenOptions(true);
+  };
+
+  const hideOptions = () => {
+    setOpenOptions(false);
+  };
+
+  const dropdownRef = useClickOutside(() => {
+    hideOptions();
+  });
+
+  return (
+    <>
+      <label className="block mb-1.5 text-sm text-gray-400" htmlFor={id}>
+        {label}
+      </label>
+      <div
+        className="mt-2 w-full border border-gray-500 rounded-lg focus:outline-2 focus:outline-blue-500 focus:border-none"
+        ref={dropdownRef}
+      >
+        {selectedOptions.length > 0 && (
+          <div className="bg-transparent w-full p-2">
+            <div className="w-full py-2">
+              {selectedOptions.map(({ id, name }: IOptions) => (
+                <span
+                  key={id}
+                  className="border rounded-full bg-blue-400 p-2 mx-0.5 text-sm text-center text-white"
+                  onClick={() => onRemove(id!)}
+                  data-testid={`select-${id}`}
+                >
+                  {name}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div className="relative w-full focus:outline-2 focus:outline-blue-500 focus:border-none" onClick={showOptions}>
+          <Input placeholder="Select tech" variant="outline" id={id} />
+          {openOptions && (
+            <div className="w-full p-2" data-testid="options">
+              {options.map(({ id, name, image: logo }: IOptions) => (
+                <div
+                  key={id}
+                  onClick={() => onSelect(id!)}
+                  className="flex items-center gap-2 px-2 my-2 hover:bg-blue-500 hover:rounded"
+                  data-testid={`option-${id}`}
+                >
+                  <Image
+                    width={24}
+                    height={24}
+                    className="w-[24px] h-[24px] object-cover rounded-full"
+                    src={logo!}
+                    alt={name}
+                  />
+                  <span className="text-black font-md">{name}</span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </>
+  );
+};
