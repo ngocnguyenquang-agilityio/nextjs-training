@@ -1,38 +1,37 @@
 'use client';
 
+import { usePathname, useSearchParams } from 'next/navigation';
 // Components
 import { Button } from '../Button';
 
 // Helpers
-import { cls } from '@/utils/cls';
-
-const handleChangePagination = (e: React.MouseEvent<HTMLButtonElement>) => {
-  // TODO: Handle change pagination
-};
+import Link from 'next/link';
 
 interface PaginationProps {
   totalPages: number;
-  standingPage: null | string;
 }
 
-export const Pagination = ({ totalPages, standingPage }: PaginationProps) => {
+export const Pagination = ({ totalPages }: PaginationProps) => {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const currentPage = Number(searchParams.get('page')) || 1;
+
+  const createPageURL = (pageNumber: number | string) => {
+    const params = new URLSearchParams(searchParams);
+    params.set('page', pageNumber.toString());
+    return `${pathname}?${params.toString()}`;
+  };
+
   return (
     <nav className="pt-4 flex justify-end">
       <ul data-testid="pagination" className="inline-flex -space-x-px text-md gap-4">
-        {Array.apply(0, new Array(totalPages)).map((_, idx) => {
-          const currentPage = idx + 1;
-          const isActivePage = currentPage.toString() === standingPage;
-
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page, idx) => {
           return (
-            <li key={idx}>
-              <Button
-                variant={isActivePage ? 'primary' : 'outlinePrimary'}
-                value={currentPage.toString()}
-                onClick={handleChangePagination}
-              >
-                {currentPage.toString()}
+            <Link href={createPageURL(page)} key={idx}>
+              <Button variant={currentPage === page ? 'primary' : 'outlinePrimary'} value={currentPage.toString()}>
+                {page}
               </Button>
-            </li>
+            </Link>
           );
         })}
       </ul>

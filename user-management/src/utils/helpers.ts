@@ -20,3 +20,14 @@ export const getImageUrl = (name: string, imgSrc?: string) => {
 
   return `https://ui-avatars.com/api/?name=${name}&rounded=true&background=random&size=28`;
 };
+
+/**
+ * Get total pages
+ * @param {number} dataLength
+ * @param {number} limitData
+ * @returns
+ */
+export const getTotalPages = (dataLength: number, limitData: number) => {
+  const totalPages = Math.ceil(dataLength / limitData);
+  return totalPages;
+};

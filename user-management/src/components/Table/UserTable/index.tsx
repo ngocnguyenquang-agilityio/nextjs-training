@@ -1,14 +1,14 @@
 'use client';
 
-import { SyntheticEvent } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import useSWR from 'swr';
 
 // Components
 import { Button } from '@/components/Button';
 import { Pagination } from '@/components/Pagination';
-import { UserTableSkeleton } from '@/components/Skeleton';
+import { PaginationSkeleton, UserTableSkeleton } from '@/components/Skeleton';
 
 // Icons
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
@@ -21,20 +21,27 @@ import { deleteMethod, fetcher } from '@/services/fetcher';
 
 // Constants
 import { API_ROUTER } from '@/constants/routes';
+import { LIMIT_DEFAULT } from '@/constants/pagination';
 
 // Helpers
-import { getImageUrl } from '@/utils/helpers';
+import { getImageUrl, getTotalPages } from '@/utils/helpers';
 
 export const UserTable = () => {
-  const { data, isLoading, mutate } = useSWR(API_ROUTER.USER_LIST, fetcher);
+  const searchParams = useSearchParams();
+  const page = searchParams.get('page') || 1;
+
+  const { data: totalData, isLoading: totalDataLoading } = useSWR(API_ROUTER.USER_LIST, fetcher);
+  const { data, isLoading, mutate } = useSWR(`${API_ROUTER.USER_LIST}?page=${page}&limit=${LIMIT_DEFAULT}`, fetcher);
 
   if (isLoading) return <UserTableSkeleton />;
 
-  const handleDelete = async (e: SyntheticEvent, id: string) => {
-    const newDate = data.filter((item: User) => item.id !== id);
+  const totalPages = getTotalPages(totalData.length, LIMIT_DEFAULT);
+
+  const handleDelete = async (id: string) => {
+    const newData = data.filter((item: User) => item.id !== id);
     try {
-      await mutate(newDate, false);
       await deleteMethod(API_ROUTER.USER_DETAIL(id));
+      await mutate(newData);
 
       // TODO: Implement toast
       alert(`Deleted item ${id}`);
@@ -98,7 +105,7 @@ export const UserTable = () => {
                     variant="outlineSecondary"
                     size="sm"
                     className="group hover:bg-red-400"
-                    onClick={(e) => handleDelete(e, id!)}
+                    onClick={() => handleDelete(id!)}
                     data-testid={`delete-${id}`}
                   >
                     <TrashIcon className="w-5 group-hover:text-white" />
@@ -109,10 +116,12 @@ export const UserTable = () => {
           ))}
         </tbody>
       </table>
-      {data.length > 5 && (
+
+      {totalDataLoading ? (
+        <PaginationSkeleton />
+      ) : (
         <div className="mt-3 flex w-full justify-center">
-          {/* TODO: Handle pagination  */}
-          <Pagination totalPages={4} standingPage="1" />
+          <Pagination totalPages={totalPages!} />
         </div>
       )}
     </div>
