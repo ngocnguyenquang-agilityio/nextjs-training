@@ -1,6 +1,8 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
+import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
 import { useRouter } from 'next/navigation';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
@@ -8,13 +10,17 @@ import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 // Components
 import { Button } from '@/components/Button';
 import { FormControl } from '@/components/FormControl';
+import { MultipleSelect } from '@/components/MultipleSelect';
 
 // Constants
 import { REGEX } from '@/constants/regex';
 import { API_ROUTER, PAGE_ROUTES } from '@/constants/routes';
 
 // Services
-import { postMethod } from '@/services/fetcher';
+import { fetcher, postMethod } from '@/services/fetcher';
+
+// Types
+import { Tech } from '@/interfaces/tech';
 
 interface IFormInput {
   firstName: string;
@@ -23,10 +29,16 @@ interface IFormInput {
   dob: string;
   entryDate: string;
   avatar: string;
+  techStacks: string[];
 }
 
 export const CreateUserForm = () => {
   const router = useRouter();
+
+  const { data = [], isLoading } = useSWR(API_ROUTER.TECH_LIST, fetcher);
+
+  const [selectedData, setSelectedData] = useState<string[]>([]);
+
   const {
     handleSubmit,
     control,
@@ -38,9 +50,37 @@ export const CreateUserForm = () => {
       avatar: ''
     }
   });
+
   const { trigger, isMutating } = useSWRMutation(API_ROUTER.USER_LIST, postMethod);
+
+  if (isLoading) {
+    return (
+      <div className="absolute right-1/2 bottom-1/2 transform translate-x-1/2 translate-y-1/2">
+        <div className="border-t-transparent border-solid animate-spin rounded-full border-blue-400 border-8 h-64 w-64" />
+      </div>
+    );
+  }
+
+  const options = data
+    .filter((item: Tech) => !selectedData.includes(item.id!))
+    .map((option: Tech) => {
+      return { ...option, image: option.logo };
+    });
+
+  const selectedOptions = data.filter((item: Tech) => selectedData.includes(item.id!));
+
+  const onSelect = (id: string) => {
+    setSelectedData((prev: string[]) => [...prev, id]);
+  };
+
+  const onRemove = (id: string) => {
+    setSelectedData((prev: string[]) => [...prev.filter((it) => it !== id)]);
+  };
+
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    await trigger(data);
+    const newData = { ...data, techStacks: selectedData };
+
+    await trigger(newData);
     router.push(PAGE_ROUTES.USER_LIST);
   };
   const newDate = new Date();
@@ -165,7 +205,16 @@ export const CreateUserForm = () => {
           />
         </div>
 
-        <div className="mb-4">{/* TODO: Handle add techstacks to user */}</div>
+        <div className="mb-4">
+          <MultipleSelect
+            id="tech-stack"
+            label="Techstacks"
+            options={options}
+            onSelect={onSelect}
+            selectedOptions={selectedOptions}
+            onRemove={onRemove}
+          />
+        </div>
       </div>
       <div className="mt-6 flex justify-end gap-4">
         <Link

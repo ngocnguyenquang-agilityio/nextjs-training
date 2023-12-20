@@ -60,7 +60,7 @@ export const MultipleSelect = ({
               {selectedOptions.map(({ id, name }: IOptions) => (
                 <span
                   key={id}
-                  className="border rounded-full bg-blue-400 p-2 mx-0.5 text-sm text-center text-white"
+                  className="border rounded-full bg-blue-400 p-2 mx-0.5 text-sm text-center text-white cursor-pointer"
                   onClick={() => onRemove(id!)}
                   data-testid={`select-${id}`}
                 >
@@ -75,20 +75,22 @@ export const MultipleSelect = ({
           <Input placeholder="Select tech" variant="outline" id={id} />
           {openOptions && (
             <div className="w-full p-2" data-testid="options">
-              {options.map(({ id, name, image: logo }: IOptions) => (
+              {options.map(({ id, name, image }: IOptions) => (
                 <div
                   key={id}
                   onClick={() => onSelect(id!)}
-                  className="flex items-center gap-2 px-2 my-2 hover:bg-blue-500 hover:rounded"
+                  className="flex items-center gap-2 px-2 my-2 hover:bg-blue-500 hover:rounded cursor-pointer"
                   data-testid={`option-${id}`}
                 >
-                  <Image
-                    width={24}
-                    height={24}
-                    className="w-[24px] h-[24px] object-cover rounded-full"
-                    src={logo!}
-                    alt={name}
-                  />
+                  {image && (
+                    <Image
+                      width={24}
+                      height={24}
+                      className="w-[24px] h-[24px] object-cover rounded-full"
+                      src={image}
+                      alt={name}
+                    />
+                  )}
                   <span className="text-black font-md">{name}</span>
                 </div>
               ))}
