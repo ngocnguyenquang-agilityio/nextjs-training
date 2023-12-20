@@ -1,3 +1,5 @@
+import { Button } from '../Button';
+
 const UserTableRowSkeleton = () => {
   return (
     <tr className="odd:bg-white even:bg-gray-50">
@@ -99,5 +101,18 @@ export const TechTableSkeleton = () => {
         <TechTableRowSkeleton />
       </tbody>
     </table>
+  );
+};
+
+export const PaginationSkeleton = () => {
+  return (
+    <nav className="pt-4 flex justify-end">
+      <ul className="inline-flex -space-x-px text-md gap-4">
+        <div className="p-5 rounded-md bg-gray-200" />
+        <div className="p-5 rounded-md bg-gray-200" />
+        <div className="p-5 rounded-md bg-gray-200" />
+        <div className="p-5 rounded-md bg-gray-200" />
+      </ul>
+    </nav>
   );
 };
