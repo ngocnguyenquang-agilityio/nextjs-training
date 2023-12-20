@@ -6,4 +6,5 @@ export interface User {
   phone: string;
   entryDate: string;
   avatar: string;
+  techStacks: string[];
 }

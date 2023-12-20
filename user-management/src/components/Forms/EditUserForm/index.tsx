@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
 import Link from 'next/link';
@@ -9,6 +10,7 @@ import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 // Components
 import { Button } from '@/components/Button';
 import { FormControl } from '@/components/FormControl';
+import { MultipleSelect } from '@/components/MultipleSelect';
 
 // Constants
 import { REGEX } from '@/constants/regex';
@@ -20,6 +22,9 @@ import { putMethod, fetcher } from '@/services/fetcher';
 // Helpers
 import { convertDateValue } from '@/utils/helpers';
 
+// Types
+import { Tech } from '@/interfaces/tech';
+
 interface IFormInput {
   firstName: string;
   lastName: string;
@@ -27,30 +32,61 @@ interface IFormInput {
   dob: string;
   entryDate: string;
   avatar: string;
+  techStacks: string[];
 }
 
 export const EditUserForm = ({ id }: { id: string }) => {
   const router = useRouter();
-  const { data, isLoading } = useSWR(API_ROUTER.USER_DETAIL(id), fetcher);
+
+  const { data: userData = {}, isLoading: isUserDataLoading } = useSWR(API_ROUTER.USER_DETAIL(id), fetcher);
+  const { data: techData = [], isLoading: isTechDataLoading } = useSWR(API_ROUTER.TECH_LIST, fetcher);
+
+  const [selectedData, setSelectedData] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (!isUserDataLoading && userData) {
+      setSelectedData(userData.techStacks);
+    }
+  }, [userData]);
+
   const {
     handleSubmit,
     control,
     formState: { errors }
-  } = useForm<IFormInput>({ values: data });
+  } = useForm<IFormInput>({ values: userData });
 
   const { trigger, isMutating } = useSWRMutation(API_ROUTER.USER_DETAIL(id), putMethod);
 
   // TODO: Implement UserForm skeleton
-  if (isLoading)
+  if (isUserDataLoading || isTechDataLoading) {
     return (
       <div className="absolute right-1/2 bottom-1/2 transform translate-x-1/2 translate-y-1/2">
         <div className="border-t-transparent border-solid animate-spin rounded-full border-blue-400 border-8 h-64 w-64" />
       </div>
     );
+  }
+
+  const options = techData
+    .filter((item: Tech) => !selectedData.includes(item.id!))
+    .map((option: Tech) => {
+      return { ...option, image: option.logo };
+    });
+
+  const selectedOptions = techData.filter((item: Tech) => selectedData.includes(item.id!));
+
+  const onSelect = (id: string) => {
+    setSelectedData((prev: string[]) => [...prev, id]);
+  };
+
+  const onRemove = (id: string) => {
+    setSelectedData((prev: string[]) => [...prev.filter((it) => it !== id)]);
+  };
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
-      await trigger(data);
+      const newData = { ...data, techStacks: selectedData };
+
+      await trigger(newData);
     } catch {
       throw new Error('Edit user failed!');
     }
@@ -77,7 +113,7 @@ export const EditUserForm = ({ id }: { id: string }) => {
                   placeholder="First name"
                   id="firstName"
                   required
-                  defaultValue={data.firstName}
+                  defaultValue={userData.firstName}
                   error={errors?.firstName ? true : false}
                   errorText={errors?.firstName?.message}
                   onChange={onChange}
@@ -100,7 +136,7 @@ export const EditUserForm = ({ id }: { id: string }) => {
                   placeholder="Last name"
                   id="lastName"
                   required
-                  defaultValue={data.lastName}
+                  defaultValue={userData.lastName}
                   error={errors?.lastName ? true : false}
                   errorText={errors?.lastName?.message}
                   onChange={onChange}
@@ -124,7 +160,7 @@ export const EditUserForm = ({ id }: { id: string }) => {
                 placeholder="123-456-7891"
                 id="phone"
                 required
-                defaultValue={data.phone}
+                defaultValue={userData.phone}
                 error={errors?.phone ? true : false}
                 errorText={errors?.phone?.message}
                 onChange={onChange}
@@ -140,7 +176,7 @@ export const EditUserForm = ({ id }: { id: string }) => {
             render={({ field: { onChange } }) => (
               <FormControl
                 type="date"
-                defaultValue={data.dob.substring(0, 10)}
+                defaultValue={userData.dob.substring(0, 10)}
                 max={newDate}
                 labelText="Date of Birth"
                 id="dob"
@@ -157,8 +193,8 @@ export const EditUserForm = ({ id }: { id: string }) => {
             render={({ field: { onChange } }) => (
               <FormControl
                 type="date"
-                defaultValue={data.entryDate.substring(0, 10)}
-                min={data.entryDate.substring(0, 10)}
+                defaultValue={userData.entryDate.substring(0, 10)}
+                min={userData.entryDate.substring(0, 10)}
                 labelText="Entry Date"
                 id="entry-date"
                 onChange={(e) => onChange(convertDateValue(e.target.value))}
@@ -176,14 +212,23 @@ export const EditUserForm = ({ id }: { id: string }) => {
                 labelText="Avatar URL"
                 placeholder="https://avatar-link.com"
                 id="avatar"
-                defaultValue={data.avatar || ''}
+                defaultValue={userData.avatar || ''}
                 onChange={onChange}
               />
             )}
           />
         </div>
 
-        <div className="mb-4">{/* TODO: Handle add techstacks to user */}</div>
+        <div className="mb-4">
+          <MultipleSelect
+            id={`tech-stack-${id}`}
+            label="Techstacks"
+            options={options}
+            selectedOptions={selectedOptions}
+            onSelect={onSelect}
+            onRemove={onRemove}
+          />
+        </div>
       </div>
       <div className="mt-6 flex justify-end gap-4">
         <Link
