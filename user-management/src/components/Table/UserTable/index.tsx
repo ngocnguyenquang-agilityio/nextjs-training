@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import useSWR from 'swr';
 
 // Components
@@ -27,6 +27,7 @@ import { LIMIT_DEFAULT } from '@/constants/pagination';
 import { getImageUrl, getTotalPages } from '@/utils/helpers';
 
 export const UserTable = () => {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const page = searchParams.get('page') || 1;
 
@@ -82,7 +83,10 @@ export const UserTable = () => {
                     width={28}
                     height={28}
                   />
-                  <p>
+                  <p
+                    className="hover:underline hover:cursor-pointer"
+                    onClick={() => router.push(`/users/${id}/details`)}
+                  >
                     {lastName} {firstName}
                   </p>
                 </div>
@@ -93,7 +97,7 @@ export const UserTable = () => {
               <td className="px-6 py-4">
                 <div className="flex gap-3">
                   <Link
-                    href={`/users/${id}`}
+                    href={`/users/${id}/edit`}
                     className="group rounded-md border p-2 hover:bg-blue-400"
                     data-testid={`edit-${id}`}
                   >
