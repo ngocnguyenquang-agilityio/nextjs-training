@@ -62,11 +62,17 @@ export const MultipleSelect = ({
               {selectedOptions.map(({ id, name }: IOptions) => (
                 <span
                   key={id}
-                  className="border rounded-full bg-blue-400 p-2 mx-0.5 text-sm text-center text-white"
-                  onClick={() => onRemove(id!)}
+                  className={`border rounded-full bg-blue-400 p-2 mx-0.5 text-sm text-center text-white ${
+                    disabled && 'cursor-not-allowed'
+                  }`}
                   data-testid={`select-${id}`}
                 >
                   {name}
+                  {!disabled && (
+                    <span className="ml-2 pl-2 border-l-2 cursor-pointer" onClick={() => onRemove(id!)}>
+                      X
+                    </span>
+                  )}
                 </span>
               ))}
             </div>
