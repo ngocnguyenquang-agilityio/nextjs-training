@@ -17,7 +17,7 @@ import { REGEX } from '@/constants/regex';
 import { API_ROUTER, PAGE_ROUTES } from '@/constants/routes';
 
 // Services
-import { putMethod, fetcher } from '@/services/fetcher';
+import { putMethod, fetcher, deleteMethod } from '@/services/fetcher';
 
 // Helpers
 import { convertDateValue } from '@/utils/helpers';
@@ -55,7 +55,11 @@ export const EditUserForm = ({ id, viewOnly = false }: { id: string; viewOnly?: 
     formState: { errors }
   } = useForm<IFormInput>({ values: userData });
 
-  const { trigger, isMutating } = useSWRMutation(API_ROUTER.USER_DETAIL(id), putMethod);
+  const { trigger: editUser, isMutating: isEditMutating } = useSWRMutation(API_ROUTER.USER_DETAIL(id), putMethod);
+  const { trigger: deleteUser, isMutating: isDeleteMutating } = useSWRMutation(
+    API_ROUTER.USER_DETAIL(id),
+    deleteMethod
+  );
 
   // TODO: Implement UserForm skeleton
   if (isUserDataLoading || isTechDataLoading) {
@@ -82,11 +86,22 @@ export const EditUserForm = ({ id, viewOnly = false }: { id: string; viewOnly?: 
     setSelectedData((prev: string[]) => [...prev.filter((it) => it !== id)]);
   };
 
+  const handleDelete = async () => {
+    try {
+      await deleteUser();
+      console.log('abc');
+
+      router.push('/users');
+    } catch {
+      throw new Error('Something wrong when delete user');
+    }
+  };
+
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
       const newData = { ...data, techStacks: selectedData };
 
-      await trigger(newData);
+      await editUser(newData);
     } catch {
       throw new Error('Edit user failed!');
     }
@@ -246,7 +261,7 @@ export const EditUserForm = ({ id, viewOnly = false }: { id: string; viewOnly?: 
             >
               Back
             </Link>
-            <Button variant="danger" disabled={isMutating} type="submit">
+            <Button variant="danger" disabled={isDeleteMutating} onClick={handleDelete}>
               Delete
             </Button>
             <Link
@@ -264,7 +279,7 @@ export const EditUserForm = ({ id, viewOnly = false }: { id: string; viewOnly?: 
             >
               Cancel
             </Link>
-            <Button disabled={isMutating} type="submit">
+            <Button disabled={isEditMutating} type="submit">
               Save
             </Button>
           </>
