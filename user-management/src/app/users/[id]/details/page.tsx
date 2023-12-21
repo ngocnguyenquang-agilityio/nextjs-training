@@ -8,7 +8,7 @@ import { EditUserForm } from '@/components/Forms/EditUserForm';
 import { PAGE_ROUTES } from '@/constants/routes';
 
 const UserDetailPage = async ({ params }: { params: { id: string } }) => {
-  const id = params.id;
+  const { id } = params;
 
   return (
     <main>
