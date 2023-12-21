@@ -73,7 +73,9 @@ export const MultipleSelect = ({
         )}
 
         {selectedOptions.length < 1 && disabled && (
-          <p className="p-2.5 text-sm font-md opacity-50 shadow-inner cursor-not-allowed">No Techstack has been selected</p>
+          <p className="p-2.5 text-sm font-md opacity-50 shadow-inner cursor-not-allowed">
+            No Techstack has been selected
+          </p>
         )}
 
         {!disabled && (

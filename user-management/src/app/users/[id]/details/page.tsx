@@ -26,7 +26,7 @@ const UserDetailPage = async ({ params }: { params: { id: string } }) => {
           </div>
         }
       >
-        <EditUserForm id={id} viewOnly/>
+        <EditUserForm id={id} viewOnly={true} />
       </Suspense>
     </main>
   );
