@@ -35,8 +35,6 @@ export const UserTable = () => {
 
   if (isLoading) return <UserTableSkeleton />;
 
-  const totalPages = getTotalPages(totalData.length, LIMIT_DEFAULT);
-
   const handleDelete = async (id: string) => {
     const newData = data.filter((item: User) => item.id !== id);
     try {
@@ -121,7 +119,7 @@ export const UserTable = () => {
         <PaginationSkeleton />
       ) : (
         <div className="mt-3 flex w-full justify-center">
-          <Pagination totalPages={totalPages!} />
+          <Pagination totalPages={getTotalPages(totalData.length, LIMIT_DEFAULT)} />
         </div>
       )}
     </div>
