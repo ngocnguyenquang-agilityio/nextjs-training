@@ -35,7 +35,7 @@ interface IFormInput {
   techStacks: string[];
 }
 
-export const EditUserForm = ({ id }: { id: string }) => {
+export const EditUserForm = ({ id, viewOnly = false }: { id: string; viewOnly?: boolean }) => {
   const router = useRouter();
 
   const { data: userData = {}, isLoading: isUserDataLoading } = useSWR(API_ROUTER.USER_DETAIL(id), fetcher);
@@ -113,6 +113,7 @@ export const EditUserForm = ({ id }: { id: string }) => {
                   placeholder="First name"
                   id="firstName"
                   required
+                  disabled={viewOnly ? true : false}
                   defaultValue={userData.firstName}
                   error={errors?.firstName ? true : false}
                   errorText={errors?.firstName?.message}
@@ -136,6 +137,7 @@ export const EditUserForm = ({ id }: { id: string }) => {
                   placeholder="Last name"
                   id="lastName"
                   required
+                  disabled={viewOnly ? true : false}
                   defaultValue={userData.lastName}
                   error={errors?.lastName ? true : false}
                   errorText={errors?.lastName?.message}
@@ -160,6 +162,7 @@ export const EditUserForm = ({ id }: { id: string }) => {
                 placeholder="123-456-7891"
                 id="phone"
                 required
+                disabled={viewOnly ? true : false}
                 defaultValue={userData.phone}
                 error={errors?.phone ? true : false}
                 errorText={errors?.phone?.message}
@@ -181,6 +184,7 @@ export const EditUserForm = ({ id }: { id: string }) => {
                 labelText="Date of Birth"
                 id="dob"
                 onChange={(e) => onChange(convertDateValue(e.target.value))}
+                disabled={viewOnly ? true : false}
               />
             )}
           />
@@ -198,6 +202,7 @@ export const EditUserForm = ({ id }: { id: string }) => {
                 labelText="Entry Date"
                 id="entry-date"
                 onChange={(e) => onChange(convertDateValue(e.target.value))}
+                disabled={viewOnly ? true : false}
               />
             )}
           />
@@ -214,6 +219,7 @@ export const EditUserForm = ({ id }: { id: string }) => {
                 id="avatar"
                 defaultValue={userData.avatar || ''}
                 onChange={onChange}
+                disabled={viewOnly ? true : false}
               />
             )}
           />
@@ -227,19 +233,42 @@ export const EditUserForm = ({ id }: { id: string }) => {
             selectedOptions={selectedOptions}
             onSelect={onSelect}
             onRemove={onRemove}
+            disabled={viewOnly}
           />
         </div>
       </div>
       <div className="mt-6 flex justify-end gap-4">
-        <Link
-          href="/users"
-          className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
-        >
-          Cancel
-        </Link>
-        <Button disabled={isMutating} type="submit">
-          Edit User
-        </Button>
+        {viewOnly ? (
+          <>
+            <Link
+              href="/users"
+              className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
+            >
+              Back
+            </Link>
+            <Button variant="danger" disabled={isMutating} type="submit">
+              Delete
+            </Button>
+            <Link
+              href={`/users/${id}/edit`}
+              className="flex h-10 items-center rounded-lg bg-blue-500 px-4 text-sm font-medium text-white transition-colors hover:bg-blue-400"
+            >
+              Edit User
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link
+              href="/users"
+              className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
+            >
+              Cancel
+            </Link>
+            <Button disabled={isMutating} type="submit">
+              Save
+            </Button>
+          </>
+        )}
       </div>
     </form>
   );
