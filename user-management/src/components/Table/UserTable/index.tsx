@@ -20,7 +20,7 @@ import { User } from '@/interfaces/user';
 import { deleteMethod, fetcher } from '@/services/fetcher';
 
 // Constants
-import { API_ROUTER } from '@/constants/routes';
+import { API_ROUTER, PAGE_ROUTES } from '@/constants/routes';
 import { LIMIT_DEFAULT } from '@/constants/pagination';
 
 // Helpers
@@ -82,9 +82,9 @@ export const UserTable = () => {
                     width={28}
                     height={28}
                   />
-                  <p>
+                  <Link href={PAGE_ROUTES.USER_DETAIL(id!)} className="hover:underline hover:cursor-pointer">
                     {lastName} {firstName}
-                  </p>
+                  </Link>
                 </div>
               </td>
               <td className="px-6 py-4">{dob.substring(0, 10)}</td>
@@ -93,7 +93,7 @@ export const UserTable = () => {
               <td className="px-6 py-4">
                 <div className="flex gap-3">
                   <Link
-                    href={`/users/${id}`}
+                    href={PAGE_ROUTES.USER_EDIT(id!)}
                     className="group rounded-md border p-2 hover:bg-blue-400"
                     data-testid={`edit-${id}`}
                   >

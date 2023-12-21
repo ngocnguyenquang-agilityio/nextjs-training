@@ -26,7 +26,7 @@ describe('Button Component', () => {
     render(<Button variant="danger">Button</Button>);
     const button = screen.getByRole('button');
     expect(button.getAttribute('class')).toMatch(
-      /bg-red-500 transition-colors hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500 active:bg-red-600/gi
+      /bg-red-500 text-white transition-colors hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500 active:bg-red-600/gi
     );
   });
 

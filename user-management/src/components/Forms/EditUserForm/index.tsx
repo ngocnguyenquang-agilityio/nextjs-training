@@ -17,7 +17,7 @@ import { REGEX } from '@/constants/regex';
 import { API_ROUTER, PAGE_ROUTES } from '@/constants/routes';
 
 // Services
-import { putMethod, fetcher } from '@/services/fetcher';
+import { putMethod, fetcher, deleteMethod } from '@/services/fetcher';
 
 // Helpers
 import { convertDateValue } from '@/utils/helpers';
@@ -35,7 +35,12 @@ interface IFormInput {
   techStacks: string[];
 }
 
-export const EditUserForm = ({ id }: { id: string }) => {
+interface EditUserFormProps {
+  id: string;
+  viewOnly?: boolean;
+}
+
+export const EditUserForm = ({ id, viewOnly = false }: EditUserFormProps) => {
   const router = useRouter();
 
   const { data: userData = {}, isLoading: isUserDataLoading } = useSWR(API_ROUTER.USER_DETAIL(id), fetcher);
@@ -55,7 +60,11 @@ export const EditUserForm = ({ id }: { id: string }) => {
     formState: { errors }
   } = useForm<IFormInput>({ values: userData });
 
-  const { trigger, isMutating } = useSWRMutation(API_ROUTER.USER_DETAIL(id), putMethod);
+  const { trigger: editUser, isMutating: isEditMutating } = useSWRMutation(API_ROUTER.USER_DETAIL(id), putMethod);
+  const { trigger: deleteUser, isMutating: isDeleteMutating } = useSWRMutation(
+    API_ROUTER.USER_DETAIL(id),
+    deleteMethod
+  );
 
   // TODO: Implement UserForm skeleton
   if (isUserDataLoading || isTechDataLoading) {
@@ -82,11 +91,21 @@ export const EditUserForm = ({ id }: { id: string }) => {
     setSelectedData((prev: string[]) => [...prev.filter((it) => it !== id)]);
   };
 
+  const handleDelete = async () => {
+    try {
+      await deleteUser();
+
+      router.push(PAGE_ROUTES.USER_LIST);
+    } catch {
+      throw new Error('Something wrong when delete user');
+    }
+  };
+
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
       const newData = { ...data, techStacks: selectedData };
 
-      await trigger(newData);
+      await editUser(newData);
     } catch {
       throw new Error('Edit user failed!');
     }
@@ -113,6 +132,7 @@ export const EditUserForm = ({ id }: { id: string }) => {
                   placeholder="First name"
                   id="firstName"
                   required
+                  disabled={viewOnly ? true : false}
                   defaultValue={userData.firstName}
                   error={errors?.firstName ? true : false}
                   errorText={errors?.firstName?.message}
@@ -136,6 +156,7 @@ export const EditUserForm = ({ id }: { id: string }) => {
                   placeholder="Last name"
                   id="lastName"
                   required
+                  disabled={viewOnly ? true : false}
                   defaultValue={userData.lastName}
                   error={errors?.lastName ? true : false}
                   errorText={errors?.lastName?.message}
@@ -160,6 +181,7 @@ export const EditUserForm = ({ id }: { id: string }) => {
                 placeholder="123-456-7891"
                 id="phone"
                 required
+                disabled={viewOnly ? true : false}
                 defaultValue={userData.phone}
                 error={errors?.phone ? true : false}
                 errorText={errors?.phone?.message}
@@ -181,6 +203,7 @@ export const EditUserForm = ({ id }: { id: string }) => {
                 labelText="Date of Birth"
                 id="dob"
                 onChange={(e) => onChange(convertDateValue(e.target.value))}
+                disabled={viewOnly ? true : false}
               />
             )}
           />
@@ -198,6 +221,7 @@ export const EditUserForm = ({ id }: { id: string }) => {
                 labelText="Entry Date"
                 id="entry-date"
                 onChange={(e) => onChange(convertDateValue(e.target.value))}
+                disabled={viewOnly ? true : false}
               />
             )}
           />
@@ -214,6 +238,7 @@ export const EditUserForm = ({ id }: { id: string }) => {
                 id="avatar"
                 defaultValue={userData.avatar || ''}
                 onChange={onChange}
+                disabled={viewOnly ? true : false}
               />
             )}
           />
@@ -227,19 +252,42 @@ export const EditUserForm = ({ id }: { id: string }) => {
             selectedOptions={selectedOptions}
             onSelect={onSelect}
             onRemove={onRemove}
+            disabled={viewOnly}
           />
         </div>
       </div>
       <div className="mt-6 flex justify-end gap-4">
-        <Link
-          href="/users"
-          className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
-        >
-          Cancel
-        </Link>
-        <Button disabled={isMutating} type="submit">
-          Edit User
-        </Button>
+        {viewOnly ? (
+          <>
+            <Link
+              href={PAGE_ROUTES.USER_LIST}
+              className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
+            >
+              Back
+            </Link>
+            <Button variant="danger" disabled={isDeleteMutating} onClick={handleDelete}>
+              Delete
+            </Button>
+            <Link
+              href={PAGE_ROUTES.USER_EDIT(id!)}
+              className="flex h-10 items-center rounded-lg bg-blue-500 px-4 text-sm font-medium text-white transition-colors hover:bg-blue-400"
+            >
+              Edit User
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link
+              href={PAGE_ROUTES.USER_LIST}
+              className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
+            >
+              Cancel
+            </Link>
+            <Button disabled={isEditMutating} type="submit">
+              Save
+            </Button>
+          </>
+        )}
       </div>
     </form>
   );

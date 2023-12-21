@@ -8,14 +8,14 @@ import { EditUserForm } from '@/components/Forms/EditUserForm';
 import { PAGE_ROUTES } from '@/constants/routes';
 
 const UserDetailPage = async ({ params }: { params: { id: string } }) => {
-  const id = params.id;
+  const { id } = params;
 
   return (
     <main>
       <Breadcrumb
         breadcrumbs={[
           { label: 'Users', href: PAGE_ROUTES.USER_LIST },
-          { label: 'User details', href: PAGE_ROUTES.USER_DETAIL(id) }
+          { label: 'Edit User', href: PAGE_ROUTES.USER_DETAIL(id) }
         ]}
       />
 
