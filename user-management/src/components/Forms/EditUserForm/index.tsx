@@ -35,7 +35,12 @@ interface IFormInput {
   techStacks: string[];
 }
 
-export const EditUserForm = ({ id, viewOnly = false }: { id: string; viewOnly?: boolean }) => {
+interface EditUserFormProps {
+  id: string;
+  viewOnly?: boolean;
+}
+
+export const EditUserForm = ({ id, viewOnly = false }: EditUserFormProps) => {
   const router = useRouter();
 
   const { data: userData = {}, isLoading: isUserDataLoading } = useSWR(API_ROUTER.USER_DETAIL(id), fetcher);
@@ -89,9 +94,8 @@ export const EditUserForm = ({ id, viewOnly = false }: { id: string; viewOnly?: 
   const handleDelete = async () => {
     try {
       await deleteUser();
-      console.log('abc');
 
-      router.push('/users');
+      router.push(PAGE_ROUTES.USER_LIST);
     } catch {
       throw new Error('Something wrong when delete user');
     }
@@ -256,7 +260,7 @@ export const EditUserForm = ({ id, viewOnly = false }: { id: string; viewOnly?: 
         {viewOnly ? (
           <>
             <Link
-              href="/users"
+              href={PAGE_ROUTES.USER_LIST}
               className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
             >
               Back
@@ -265,7 +269,7 @@ export const EditUserForm = ({ id, viewOnly = false }: { id: string; viewOnly?: 
               Delete
             </Button>
             <Link
-              href={`/users/${id}/edit`}
+              href={PAGE_ROUTES.USER_EDIT(id!)}
               className="flex h-10 items-center rounded-lg bg-blue-500 px-4 text-sm font-medium text-white transition-colors hover:bg-blue-400"
             >
               Edit User
@@ -274,7 +278,7 @@ export const EditUserForm = ({ id, viewOnly = false }: { id: string; viewOnly?: 
         ) : (
           <>
             <Link
-              href="/users"
+              href={PAGE_ROUTES.USER_LIST}
               className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
             >
               Cancel
