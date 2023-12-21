@@ -15,7 +15,7 @@ const UserDetailPage = async ({ params }: { params: { id: string } }) => {
       <Breadcrumb
         breadcrumbs={[
           { label: 'Users', href: PAGE_ROUTES.USER_LIST },
-          { label: 'User details', href: PAGE_ROUTES.USER_DETAIL(id) }
+          { label: 'Edit User', href: PAGE_ROUTES.USER_DETAIL(id) }
         ]}
       />
 
