@@ -22,6 +22,7 @@ interface MultipleSelectProps {
   selectedOptions?: IOptions[];
   onSelect: (id: string) => void;
   onRemove: (id: string) => void;
+  disabled?: boolean;
 }
 
 export const MultipleSelect = ({
@@ -30,7 +31,8 @@ export const MultipleSelect = ({
   options,
   selectedOptions = [],
   onSelect,
-  onRemove
+  onRemove,
+  disabled = false
 }: MultipleSelectProps) => {
   const [openOptions, setOpenOptions] = useState(false);
   const showOptions = () => {
@@ -60,8 +62,7 @@ export const MultipleSelect = ({
               {selectedOptions.map(({ id, name }: IOptions) => (
                 <span
                   key={id}
-                  className="border rounded-full bg-blue-400 p-2 mx-0.5 text-sm text-center text-white cursor-pointer"
-                  onClick={() => onRemove(id!)}
+                  className="border rounded-full bg-blue-400 p-2 mx-0.5 text-sm text-center text-white"
                   data-testid={`select-${id}`}
                 >
                   {name}
@@ -71,32 +72,41 @@ export const MultipleSelect = ({
           </div>
         )}
 
-        <div className="relative w-full focus:outline-2 focus:outline-blue-500 focus:border-none" onClick={showOptions}>
-          <Input placeholder="Select tech" variant="outline" id={id} />
-          {openOptions && (
-            <div className="w-full p-2" data-testid="options">
-              {options.map(({ id, name, image }: IOptions) => (
-                <div
-                  key={id}
-                  onClick={() => onSelect(id!)}
-                  className="flex items-center gap-2 px-2 my-2 hover:bg-blue-500 hover:rounded cursor-pointer"
-                  data-testid={`option-${id}`}
-                >
-                  {image && (
-                    <Image
-                      width={24}
-                      height={24}
-                      className="w-[24px] h-[24px] object-cover rounded-full"
-                      src={image}
-                      alt={name}
-                    />
-                  )}
-                  <span className="text-black font-md">{name}</span>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+        {selectedOptions.length < 1 && disabled && (
+          <p className="p-2.5 text-sm font-md opacity-50 shadow-inner cursor-not-allowed">No Techstack has been selected</p>
+        )}
+
+        {!disabled && (
+          <div
+            className="relative w-full focus:outline-2 focus:outline-blue-500 focus:border-none"
+            onClick={showOptions}
+          >
+            <Input placeholder="Select tech" variant="outline" id={id} />
+            {openOptions && (
+              <div className="w-full p-2" data-testid="options">
+                {options.map(({ id, name, image }: IOptions) => (
+                  <div
+                    key={id}
+                    onClick={() => onSelect(id!)}
+                    className="flex items-center gap-2 px-2 my-2 hover:bg-blue-500 hover:rounded cursor-pointer"
+                    data-testid={`option-${id}`}
+                  >
+                    {image && (
+                      <Image
+                        width={24}
+                        height={24}
+                        className="w-[24px] h-[24px] object-cover rounded-full"
+                        src={image}
+                        alt={name}
+                      />
+                    )}
+                    <span className="text-black font-md">{name}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </>
   );
