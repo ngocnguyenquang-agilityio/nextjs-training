@@ -63,6 +63,7 @@ export const MultipleSelect = ({
                 <span
                   key={id}
                   className="border rounded-full bg-blue-400 p-2 mx-0.5 text-sm text-center text-white"
+                  onClick={() => onRemove(id!)}
                   data-testid={`select-${id}`}
                 >
                   {name}
@@ -72,13 +73,13 @@ export const MultipleSelect = ({
           </div>
         )}
 
-        {selectedOptions.length < 1 && disabled && (
-          <p className="p-2.5 text-sm font-md opacity-50 shadow-inner cursor-not-allowed">
-            No Techstack has been selected
-          </p>
-        )}
-
-        {!disabled && (
+        {disabled ? (
+          selectedOptions.length < 1 && (
+            <p className="p-2.5 text-sm font-md opacity-50 shadow-inner cursor-not-allowed">
+              No Techstack has been selected
+            </p>
+          )
+        ) : (
           <div
             className="relative w-full focus:outline-2 focus:outline-blue-500 focus:border-none"
             onClick={showOptions}
