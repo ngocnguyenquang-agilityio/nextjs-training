@@ -11,6 +11,7 @@ import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { Button } from '@/components/Button';
 import { FormControl } from '@/components/FormControl';
 import { MultipleSelect } from '@/components/MultipleSelect';
+import { Modal } from '@/components/Modal';
 
 // Constants
 import { REGEX } from '@/constants/regex';
@@ -21,6 +22,9 @@ import { putMethod, fetcher, deleteMethod } from '@/services/fetcher';
 
 // Helpers
 import { convertDateValue } from '@/utils/helpers';
+
+// Hooks
+import { useModal } from '@/hooks/useModal';
 
 // Types
 import { Tech } from '@/interfaces/tech';
@@ -41,6 +45,7 @@ interface EditUserFormProps {
 }
 
 export const EditUserForm = ({ id, viewOnly = false }: EditUserFormProps) => {
+  const { isShowModal, openModal, hideModal } = useModal();
   const router = useRouter();
 
   const { data: userData = {}, isLoading: isUserDataLoading } = useSWR(API_ROUTER.USER_DETAIL(id), fetcher);
@@ -94,6 +99,7 @@ export const EditUserForm = ({ id, viewOnly = false }: EditUserFormProps) => {
   const handleDelete = async () => {
     try {
       await deleteUser();
+      hideModal();
 
       router.push(PAGE_ROUTES.USER_LIST);
     } catch {
@@ -265,7 +271,7 @@ export const EditUserForm = ({ id, viewOnly = false }: EditUserFormProps) => {
             >
               Back
             </Link>
-            <Button variant="danger" disabled={isDeleteMutating} onClick={handleDelete}>
+            <Button type="button" variant="danger" disabled={isDeleteMutating} onClick={openModal}>
               Delete
             </Button>
             <Link
@@ -274,6 +280,13 @@ export const EditUserForm = ({ id, viewOnly = false }: EditUserFormProps) => {
             >
               Edit User
             </Link>
+            {isShowModal && (
+              <Modal title="Delete User" content="Do you want to delete this user?" onClickHideModal={hideModal}>
+                <Button type="button" variant="danger" disabled={isDeleteMutating} onClick={handleDelete}>
+                  Delete
+                </Button>
+              </Modal>
+            )}
           </>
         ) : (
           <>
