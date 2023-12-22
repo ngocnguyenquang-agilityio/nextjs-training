@@ -9,21 +9,31 @@ import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 // Components
 import { Button } from '@/components/Button';
 import { FormControl } from '@/components/FormControl';
+import { Modal } from '@/components/Modal';
 
 // Constants
 import { REGEX } from '@/constants/regex';
 import { API_ROUTER, PAGE_ROUTES } from '@/constants/routes';
 
 // Services
-import { putMethod, fetcher } from '@/services/fetcher';
+import { putMethod, fetcher, deleteMethod } from '@/services/fetcher';
+
+// Hooks
+import { useModal } from '@/hooks/useModal';
 
 interface IFormInput {
   name: string;
   logo: string;
+  description: string;
 }
 
-export const EditTechForm = ({ id }: { id: string }) => {
+interface EditTechFormProps {
+  id: string;
+}
+
+export const EditTechForm = ({ id }: EditTechFormProps) => {
   const router = useRouter();
+  const { isShowModal, openModal, hideModal } = useModal();
   const { data, isLoading } = useSWR(API_ROUTER.TECH_DETAIL(id), fetcher);
   const {
     handleSubmit,
@@ -31,19 +41,33 @@ export const EditTechForm = ({ id }: { id: string }) => {
     formState: { errors }
   } = useForm<IFormInput>({ values: data });
 
-  const { trigger, isMutating } = useSWRMutation(API_ROUTER.TECH_DETAIL(id), putMethod);
+  const { trigger: editTech, isMutating: isEditTechMutating } = useSWRMutation(API_ROUTER.TECH_DETAIL(id), putMethod);
+  const { trigger: deleteTech, isMutating: isDeleteTechMutating } = useSWRMutation(
+    API_ROUTER.TECH_DETAIL(id),
+    deleteMethod
+  );
 
-  // TODO: Implement TechForm skeleton
+  const handleDelete = async () => {
+    try {
+      await deleteTech();
+      hideModal();
+
+      router.push(PAGE_ROUTES.TECH_LIST);
+    } catch {
+      throw new Error('Something wrong when delete this tech');
+    }
+  };
+
   if (isLoading)
     return (
       <div className="absolute right-1/2 bottom-1/2 transform translate-x-1/2 translate-y-1/2">
-        <div className="border-t-transparent border-solid animate-spin rounded-full border-blue-400 border-8 h-64 w-64" />
+        <div className="border-gray-300 h-20 w-20 animate-spin rounded-full border-8 border-t-blue-600" />
       </div>
     );
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
-      await trigger(data);
+      await editTech(data);
     } catch {
       throw new Error('Edit tech stack failed!');
     }
@@ -91,17 +115,48 @@ export const EditTechForm = ({ id }: { id: string }) => {
             )}
           />
         </div>
+
+        <div className="mb-4">
+          <Controller
+            control={control}
+            name="description"
+            render={({ field: { onChange } }) => (
+              <div className="relative">
+                <label className="block mb-1.5 text-sm text-gray-400" htmlFor="description">
+                  Description
+                </label>
+                <textarea
+                  id="description"
+                  className="bg-transparent block w-full border text-black text-sm font-md rounded-lg p-2.5 border-gray-500 focus:ring-blue-500 outline-none focus:border-blue-500 placeholder-gray-400 focus:outline-2 focus:outline-blue-500 focus:border-none disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-inner"
+                  placeholder="Description"
+                  onChange={onChange}
+                  defaultValue={data.description || ''}
+                />
+              </div>
+            )}
+          />
+        </div>
       </div>
-      <div className="mt-6 flex justify-end gap-4">
+      <div className="mt-6 flex justify-end gap-3">
         <Link
           href={PAGE_ROUTES.TECH_LIST}
           className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
         >
-          Cancel
+          Back
         </Link>
-        <Button disabled={isMutating} type="submit">
-          Edit Tech
+        <Button type="button" variant="danger" disabled={isDeleteTechMutating} onClick={openModal}>
+          Delete
         </Button>
+        <Button disabled={isEditTechMutating} type="submit">
+          Save
+        </Button>
+        {isShowModal && (
+          <Modal title="Delete Techstack" content="Do you want to delete this techstack?" onClickHideModal={hideModal}>
+            <Button type="button" variant="danger" disabled={isDeleteTechMutating} onClick={handleDelete}>
+              Delete
+            </Button>
+          </Modal>
+        )}
       </div>
     </form>
   );
