@@ -1,5 +1,12 @@
 import { Metadata } from 'next';
 
+// Components
+import { Breadcrumb } from '@/components/Breadcrumb';
+import { HomeContent } from '@/components/HomeContent';
+
+// Constants
+import { PAGE_ROUTES } from '@/constants/routes';
+
 export const metadata: Metadata = {
   title: 'Home'
 };
@@ -7,7 +14,8 @@ export const metadata: Metadata = {
 const Home = () => {
   return (
     <main>
-      <h1>Home page</h1>
+      <Breadcrumb breadcrumbs={[{ label: 'Home', href: PAGE_ROUTES.HOME }]} />
+      <HomeContent />
     </main>
   );
 };
