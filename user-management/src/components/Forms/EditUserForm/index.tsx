@@ -41,10 +41,9 @@ interface IFormInput {
 
 interface EditUserFormProps {
   id: string;
-  viewOnly?: boolean;
 }
 
-export const EditUserForm = ({ id, viewOnly = false }: EditUserFormProps) => {
+export const EditUserForm = ({ id }: EditUserFormProps) => {
   const { isShowModal, openModal, hideModal } = useModal();
   const router = useRouter();
 
@@ -137,7 +136,6 @@ export const EditUserForm = ({ id, viewOnly = false }: EditUserFormProps) => {
                   placeholder="First name"
                   id="firstName"
                   required
-                  disabled={viewOnly ? true : false}
                   defaultValue={userData.firstName}
                   error={errors?.firstName ? true : false}
                   errorText={errors?.firstName?.message}
@@ -161,7 +159,6 @@ export const EditUserForm = ({ id, viewOnly = false }: EditUserFormProps) => {
                   placeholder="Last name"
                   id="lastName"
                   required
-                  disabled={viewOnly ? true : false}
                   defaultValue={userData.lastName}
                   error={errors?.lastName ? true : false}
                   errorText={errors?.lastName?.message}
@@ -186,7 +183,6 @@ export const EditUserForm = ({ id, viewOnly = false }: EditUserFormProps) => {
                 placeholder="123-456-7891"
                 id="phone"
                 required
-                disabled={viewOnly ? true : false}
                 defaultValue={userData.phone}
                 error={errors?.phone ? true : false}
                 errorText={errors?.phone?.message}
@@ -208,7 +204,6 @@ export const EditUserForm = ({ id, viewOnly = false }: EditUserFormProps) => {
                 labelText="Date of Birth"
                 id="dob"
                 onChange={(e) => onChange(convertDateValue(e.target.value))}
-                disabled={viewOnly ? true : false}
               />
             )}
           />
@@ -226,7 +221,6 @@ export const EditUserForm = ({ id, viewOnly = false }: EditUserFormProps) => {
                 labelText="Entry Date"
                 id="entry-date"
                 onChange={(e) => onChange(convertDateValue(e.target.value))}
-                disabled={viewOnly ? true : false}
               />
             )}
           />
@@ -243,7 +237,6 @@ export const EditUserForm = ({ id, viewOnly = false }: EditUserFormProps) => {
                 id="avatar"
                 defaultValue={userData.avatar || ''}
                 onChange={onChange}
-                disabled={viewOnly ? true : false}
               />
             )}
           />
@@ -257,48 +250,28 @@ export const EditUserForm = ({ id, viewOnly = false }: EditUserFormProps) => {
             selectedOptions={selectedOptions}
             onSelect={onSelect}
             onRemove={onRemove}
-            disabled={viewOnly}
           />
         </div>
       </div>
       <div className="mt-6 flex justify-end gap-4">
-        {viewOnly ? (
-          <>
-            <Link
-              href={PAGE_ROUTES.USER_LIST}
-              className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
-            >
-              Back
-            </Link>
-            <Button type="button" variant="danger" disabled={isDeleteMutating} onClick={openModal}>
+        <Link
+          href={PAGE_ROUTES.USER_LIST}
+          className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
+        >
+          Back
+        </Link>
+        <Button type="button" variant="danger" disabled={isDeleteMutating} onClick={openModal}>
+          Delete
+        </Button>
+        <Button disabled={isEditMutating} type="submit">
+          Save
+        </Button>
+        {isShowModal && (
+          <Modal title="Delete User" content="Do you want to delete this user?" onClickHideModal={hideModal}>
+            <Button type="button" variant="danger" disabled={isDeleteMutating} onClick={handleDelete}>
               Delete
             </Button>
-            <Link
-              href={PAGE_ROUTES.USER_EDIT(id!)}
-              className="flex h-10 items-center rounded-lg bg-blue-500 px-4 text-sm font-medium text-white transition-colors hover:bg-blue-400"
-            >
-              Edit User
-            </Link>
-            {isShowModal && (
-              <Modal title="Delete User" content="Do you want to delete this user?" onClickHideModal={hideModal}>
-                <Button type="button" variant="danger" disabled={isDeleteMutating} onClick={handleDelete}>
-                  Delete
-                </Button>
-              </Modal>
-            )}
-          </>
-        ) : (
-          <>
-            <Link
-              href={PAGE_ROUTES.USER_LIST}
-              className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
-            >
-              Cancel
-            </Link>
-            <Button disabled={isEditMutating} type="submit">
-              Save
-            </Button>
-          </>
+          </Modal>
         )}
       </div>
     </form>

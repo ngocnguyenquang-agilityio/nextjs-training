@@ -11,7 +11,7 @@ import { UserTable } from '@/components/Table/UserTable';
 import { PlusIcon } from '@heroicons/react/24/outline';
 
 // Constants
-import { PAGE_ROUTES } from '@/constants/routes';
+import { NEW_ID, PAGE_ROUTES } from '@/constants/routes';
 
 export const metadata: Metadata = {
   title: 'Users'
@@ -30,7 +30,7 @@ const UserListPage = () => {
       />
       <div className="mb-4 flex md:mt-8">
         <Link
-          href={PAGE_ROUTES.USER_CREATE}
+          href={PAGE_ROUTES.USER_DETAIL(NEW_ID)}
           className="flex h-10 items-center rounded-lg bg-blue-600 px-4 text-sm font-medium text-white transition-colors hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
         >
           <span className="hidden md:block">Create User</span>

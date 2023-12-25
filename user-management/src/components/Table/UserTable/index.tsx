@@ -4,11 +4,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import useSWR from 'swr';
+import { useState } from 'react';
 
 // Components
 import { Button } from '@/components/Button';
 import { Pagination } from '@/components/Pagination';
 import { PaginationSkeleton, UserTableSkeleton } from '@/components/Skeleton';
+import { Modal } from '@/components/Modal';
 
 // Icons
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
@@ -26,7 +28,12 @@ import { LIMIT_DEFAULT } from '@/constants/pagination';
 // Helpers
 import { getImageUrl, getTotalPages } from '@/utils/helpers';
 
+// Hooks
+import { useModal } from '@/hooks/useModal';
+
 export const UserTable = () => {
+  const [itemId, setItemId] = useState('');
+  const { isShowModal, openModal, hideModal } = useModal();
   const searchParams = useSearchParams();
   const page = searchParams.get('page') || 1;
 
@@ -41,11 +48,15 @@ export const UserTable = () => {
       await deleteMethod(API_ROUTER.USER_DETAIL(id));
       await mutate(newData);
 
-      // TODO: Implement toast
-      alert(`Deleted item ${id}`);
+      hideModal();
     } catch {
       throw new Error('Something wrong when delete user');
     }
+  };
+
+  const onClickDeleteIcon = (id: string) => {
+    openModal();
+    setItemId(id);
   };
 
   return (
@@ -93,7 +104,7 @@ export const UserTable = () => {
               <td className="px-6 py-4">
                 <div className="flex gap-3">
                   <Link
-                    href={PAGE_ROUTES.USER_EDIT(id!)}
+                    href={PAGE_ROUTES.USER_DETAIL(id!)}
                     className="group rounded-md border p-2 hover:bg-blue-400"
                     data-testid={`edit-${id}`}
                   >
@@ -103,7 +114,7 @@ export const UserTable = () => {
                     variant="outlineSecondary"
                     size="sm"
                     className="group hover:bg-red-400"
-                    onClick={() => handleDelete(id!)}
+                    onClick={() => onClickDeleteIcon(id!)}
                     data-testid={`delete-${id}`}
                   >
                     <TrashIcon className="w-5 group-hover:text-white" />
@@ -114,6 +125,14 @@ export const UserTable = () => {
           ))}
         </tbody>
       </table>
+
+      {isShowModal && (
+        <Modal title="Delete User" content="Do you want to delete this user?" onClickHideModal={hideModal}>
+          <Button type="button" variant="danger" onClick={() => handleDelete(itemId)}>
+            Delete
+          </Button>
+        </Modal>
+      )}
 
       {totalDataLoading ? (
         <PaginationSkeleton />
