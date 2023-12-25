@@ -1,5 +1,3 @@
-import { Button } from '../Button';
-
 const UserTableRowSkeleton = () => {
   return (
     <tr className="odd:bg-white even:bg-gray-50">
@@ -114,5 +112,51 @@ export const PaginationSkeleton = () => {
         <div className="p-5 rounded-md bg-gray-200" />
       </ul>
     </nav>
+  );
+};
+
+export const CardSkeleton = () => {
+  return (
+    <div className="relative overflow-hidden rounded-xl bg-gray-100 p-2 shadow-sm">
+      <div className="flex p-4">
+        <div className="h-5 w-5 rounded-md bg-gray-200" />
+        <div className="ml-2 h-6 w-16 rounded-md bg-gray-200 text-sm font-medium" />
+      </div>
+      <div className="flex items-center justify-center truncate rounded-xl bg-white px-4 py-8">
+        <div className="h-7 w-20 rounded-md bg-gray-200" />
+      </div>
+    </div>
+  );
+};
+
+const LatestItemRowSkeleton = () => {
+  return (
+    <div className="flex flex-row items-center justify-between py-4">
+      <div className="flex items-center">
+        <div className="flex items-center gap-3">
+          <div className="h-8 w-8 rounded-full bg-gray-100" />
+          <div className="flex flex-col gap-2 min-w-0">
+            <div className="h-6 w-24 rounded bg-gray-100" />
+            <div className="h-6 w-24 rounded bg-gray-100" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const LatestItemsSkeleton = () => {
+  return (
+    <div className="flex grow flex-col justify-between rounded-xl bg-gray-50 p-4">
+      <div className="bg-white px-6">
+        <div className="relative flex w-full flex-col overflow-hidden md:col-span-4 lg:col-span-4">
+          <LatestItemRowSkeleton />
+          <LatestItemRowSkeleton />
+          <LatestItemRowSkeleton />
+          <LatestItemRowSkeleton />
+          <LatestItemRowSkeleton />
+        </div>
+      </div>
+    </div>
   );
 };
