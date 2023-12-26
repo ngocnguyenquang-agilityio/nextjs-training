@@ -127,7 +127,7 @@ export const EditTechForm = ({ id }: EditTechFormProps) => {
                 </label>
                 <textarea
                   id="description"
-                  className="bg-transparent block w-full border text-black text-sm font-md rounded-lg p-2.5 border-gray-500 focus:ring-blue-500 outline-none focus:border-blue-500 placeholder-gray-400 focus:outline-2 focus:outline-blue-500 focus:border-none disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-inner"
+                  className="bg-transparent block w-full text-black text-sm font-md rounded-lg p-2.5 placeholder-gray-400 border-none outline outline-1 outline-offset-1 outline-gray-500 focus:ring-blue-500 focus:outline-2 focus:outline-blue-500 placeholder-gray-400 disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-inner"
                   placeholder="Description"
                   onChange={onChange}
                   defaultValue={data.description || ''}
