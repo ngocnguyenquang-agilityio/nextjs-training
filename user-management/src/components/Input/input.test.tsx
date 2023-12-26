@@ -17,7 +17,9 @@ describe('Button Component', () => {
   test('Should render error input', () => {
     render(<Input type="text" error />);
     const input = screen.getByRole('textbox');
-    expect(input.getAttribute('class')).toMatch(/focus:outline-none border-red-600 focus:border-red-600/gi);
+    expect(input.getAttribute('class')).toMatch(
+      /outline outline-1 outline-offset-1 outline-red-600 focus:outline-2 focus:outline-red-600/gi
+    );
   });
 
   test('Should able to type', () => {
