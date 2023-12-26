@@ -56,7 +56,7 @@ describe('Dropdown Component', () => {
 
   test('Should show options', async () => {
     render(<MultipleSelect {...defaultProps} />);
-    const text = screen.getByLabelText('Select options');
+    const text = screen.getByTestId('select');
     await fireEvent.click(text);
     const options = screen.getByTestId('options');
     expect(options).toBeInTheDocument();
@@ -64,7 +64,7 @@ describe('Dropdown Component', () => {
 
   test('Should render correct number of options', async () => {
     render(<MultipleSelect {...defaultProps} />);
-    const text = screen.getByLabelText('Select options');
+    const text = screen.getByTestId('select');
     await fireEvent.click(text);
     const options = screen.getByTestId('options');
     expect(options.children).toHaveLength(mockOptions.length);
@@ -72,7 +72,7 @@ describe('Dropdown Component', () => {
 
   test('Should call onCheck when select option', async () => {
     render(<MultipleSelect {...defaultProps} />);
-    const text = screen.getByLabelText('Select options');
+    const text = screen.getByTestId('select');
     await fireEvent.click(text);
     const selectedOption = screen.getByTestId('option-1');
     await fireEvent.click(selectedOption);
@@ -81,7 +81,7 @@ describe('Dropdown Component', () => {
 
   test('Should call onRemove when remove selected option', async () => {
     render(<MultipleSelect {...defaultProps} />);
-    const text = screen.getByLabelText('Select options');
+    const text = screen.getByTestId('select');
     await fireEvent.click(text);
     const selectedOption = screen.getByTestId('select-4');
     await fireEvent.click(selectedOption);

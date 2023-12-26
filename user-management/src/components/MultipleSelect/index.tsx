@@ -3,9 +3,6 @@
 import { useState } from 'react';
 import Image from 'next/image';
 
-// Components
-import { Input } from '../Input';
-
 // Hooks
 import { useClickOutside } from '@/hooks/useClickOutside';
 
@@ -53,8 +50,14 @@ export const MultipleSelect = ({
         {label}
       </label>
       <div
-        className="mt-2 w-full border border-gray-500 rounded-lg focus:outline-2 focus:outline-blue-500 focus:border-none"
+        className={`mt-2 w-full rounded-lg placeholder-gray-400 border-none ${
+          openOptions
+            ? 'outline outline-2 outline-offset-2 outline-blue-500'
+            : 'outline outline-1 outline-offset-1 outline-gray-500'
+        }`}
         ref={dropdownRef}
+        onClick={showOptions}
+        data-testid="select"
       >
         {selectedOptions.length > 0 && (
           <div className="bg-transparent w-full p-2">
@@ -65,57 +68,49 @@ export const MultipleSelect = ({
                   className={`border rounded-full bg-blue-400 p-2 mx-0.5 text-sm text-center text-white ${
                     disabled && 'cursor-not-allowed'
                   }`}
-                  data-testid={`select-${id}`}
                 >
                   {name}
-                  {!disabled && (
-                    <span className="ml-2 pl-2 border-l-2 cursor-pointer" onClick={() => onRemove(id!)}>
-                      X
-                    </span>
-                  )}
+                  <span
+                    className="ml-2 pl-2 border-l-2 cursor-pointer"
+                    onClick={() => onRemove(id!)}
+                    data-testid={`select-${id}`}
+                  >
+                    X
+                  </span>
                 </span>
               ))}
             </div>
           </div>
         )}
 
-        {disabled ? (
-          selectedOptions.length < 1 && (
-            <p className="p-2.5 text-sm font-md opacity-50 shadow-inner cursor-not-allowed">
-              No Techstack has been selected
-            </p>
-          )
-        ) : (
-          <div
-            className="relative w-full focus:outline-2 focus:outline-blue-500 focus:border-none"
-            onClick={showOptions}
-          >
-            <Input placeholder="Select tech" variant="outline" id={id} />
-            {openOptions && (
-              <div className="w-full p-2" data-testid="options">
-                {options.map(({ id, name, image }: IOptions) => (
-                  <div
-                    key={id}
-                    onClick={() => onSelect(id!)}
-                    className="flex items-center gap-2 px-2 my-2 hover:bg-blue-500 hover:rounded cursor-pointer"
-                    data-testid={`option-${id}`}
-                  >
-                    {image && (
-                      <Image
-                        width={24}
-                        height={24}
-                        className="w-[24px] h-[24px] object-cover rounded-full"
-                        src={image}
-                        alt={name}
-                      />
-                    )}
-                    <span className="text-black font-md">{name}</span>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
+        <div className="relative w-full focus:outline-2 focus:outline-blue-500 focus:border-none">
+          {selectedOptions.length < 1 && (
+            <p className="p-2.5 text-sm font-md opacity-50 shadow-inner">Select options</p>
+          )}
+          {openOptions && (
+            <div className="w-full p-2" data-testid="options">
+              {options.map(({ id, name, image }: IOptions) => (
+                <div
+                  key={id}
+                  onClick={() => onSelect(id!)}
+                  className="flex items-center gap-2 px-2 my-2 hover:bg-blue-500 hover:rounded cursor-pointer"
+                  data-testid={`option-${id}`}
+                >
+                  {image && (
+                    <Image
+                      width={24}
+                      height={24}
+                      className="w-[24px] h-[24px] object-cover rounded-full"
+                      src={image}
+                      alt={name}
+                    />
+                  )}
+                  <span className="text-black font-md">{name}</span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </>
   );
