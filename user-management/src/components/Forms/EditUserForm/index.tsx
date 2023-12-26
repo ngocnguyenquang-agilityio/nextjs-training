@@ -21,13 +21,15 @@ import { API_ROUTER, PAGE_ROUTES } from '@/constants/routes';
 import { putMethod, fetcher, deleteMethod } from '@/services/fetcher';
 
 // Helpers
-import { convertDateValue } from '@/utils/helpers';
+import { convertDateValue, getImageUrl } from '@/utils/helpers';
 
 // Hooks
 import { useModal } from '@/hooks/useModal';
 
 // Types
 import { Tech } from '@/interfaces/tech';
+import Image from 'next/image';
+import { DEFAULT_AVATAR } from '@/constants/avtart';
 
 interface IFormInput {
   firstName: string;
@@ -61,8 +63,11 @@ export const EditUserForm = ({ id }: EditUserFormProps) => {
   const {
     handleSubmit,
     control,
+    watch,
     formState: { errors, isDirty }
   } = useForm<IFormInput>({ values: userData });
+
+  const [lastName, avatar] = watch(['lastName', 'avatar']);
 
   const { trigger: editUser, isMutating: isEditMutating } = useSWRMutation(API_ROUTER.USER_DETAIL(id), putMethod);
   const { trigger: deleteUser, isMutating: isDeleteMutating } = useSWRMutation(
@@ -121,7 +126,7 @@ export const EditUserForm = ({ id }: EditUserFormProps) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="rounded-md border border-gray-200 bg-gray-50 p-4 md:p-6">
-        <div className="grid md:grid-cols-2 md:gap-6">
+        <div className="grid md:grid-cols-2 md:gap-4">
           <div className="mb-4">
             <Controller
               control={control}
@@ -167,92 +172,101 @@ export const EditUserForm = ({ id }: EditUserFormProps) => {
               )}
             />
           </div>
-        </div>
 
-        <div className="mb-4">
-          <Controller
-            control={control}
-            name="phone"
-            rules={{
-              required: 'Phone is required',
-              pattern: { value: REGEX.PHONE, message: 'Invalid Phone number' }
-            }}
-            render={({ field: { onChange } }) => (
-              <FormControl
-                labelText="Phone number"
-                placeholder="123-456-7891"
-                id="phone"
-                required
-                defaultValue={userData.phone}
-                error={errors?.phone ? true : false}
-                errorText={errors?.phone?.message}
-                onChange={onChange}
-              />
-            )}
-          />
-        </div>
+          <div className="mb-4">
+            <Controller
+              control={control}
+              name="dob"
+              render={({ field: { onChange } }) => (
+                <FormControl
+                  type="date"
+                  defaultValue={userData.dob.substring(0, 10)}
+                  max={newDate}
+                  labelText="Date of Birth"
+                  id="dob"
+                  onChange={(e) => onChange(convertDateValue(e.target.value))}
+                />
+              )}
+            />
+          </div>
 
-        <div className="mb-4">
-          <Controller
-            control={control}
-            name="dob"
-            render={({ field: { onChange } }) => (
-              <FormControl
-                type="date"
-                defaultValue={userData.dob.substring(0, 10)}
-                max={newDate}
-                labelText="Date of Birth"
-                id="dob"
-                onChange={(e) => onChange(convertDateValue(e.target.value))}
-              />
-            )}
-          />
-        </div>
+          <div className="mb-4">
+            <Controller
+              control={control}
+              name="entryDate"
+              render={({ field: { onChange } }) => (
+                <FormControl
+                  type="date"
+                  defaultValue={userData.entryDate.substring(0, 10)}
+                  min={userData.entryDate.substring(0, 10)}
+                  labelText="Entry Date"
+                  id="entry-date"
+                  onChange={(e) => onChange(convertDateValue(e.target.value))}
+                />
+              )}
+            />
+          </div>
 
-        <div className="mb-4">
-          <Controller
-            control={control}
-            name="entryDate"
-            render={({ field: { onChange } }) => (
-              <FormControl
-                type="date"
-                defaultValue={userData.entryDate.substring(0, 10)}
-                min={userData.entryDate.substring(0, 10)}
-                labelText="Entry Date"
-                id="entry-date"
-                onChange={(e) => onChange(convertDateValue(e.target.value))}
-              />
-            )}
-          />
-        </div>
+          <div className="mb-4">
+            <Controller
+              control={control}
+              name="phone"
+              rules={{
+                required: 'Phone is required',
+                pattern: { value: REGEX.PHONE, message: 'Invalid Phone number' }
+              }}
+              render={({ field: { onChange } }) => (
+                <FormControl
+                  labelText="Phone number"
+                  placeholder="123-456-7891"
+                  id="phone"
+                  required
+                  defaultValue={userData.phone}
+                  error={errors?.phone ? true : false}
+                  errorText={errors?.phone?.message}
+                  onChange={onChange}
+                />
+              )}
+            />
+          </div>
 
-        <div className="mb-4">
-          <Controller
-            control={control}
-            name="avatar"
-            render={({ field: { onChange } }) => (
-              <FormControl
-                labelText="Avatar URL"
-                placeholder="https://avatar-link.com"
-                id="avatar"
-                defaultValue={userData.avatar || ''}
-                onChange={onChange}
-              />
-            )}
-          />
-        </div>
+          <div className="mb-4">
+            <MultipleSelect
+              id={`tech-stack-${id}`}
+              label="Techstacks"
+              options={options}
+              selectedOptions={selectedOptions}
+              onSelect={onSelect}
+              onRemove={onRemove}
+            />
+          </div>
 
-        <div className="mb-4">
-          <MultipleSelect
-            id={`tech-stack-${id}`}
-            label="Techstacks"
-            options={options}
-            selectedOptions={selectedOptions}
-            onSelect={onSelect}
-            onRemove={onRemove}
-          />
+          <div className="flex mb-4 items-end gap-4 col-span-2">
+            <Controller
+              control={control}
+              name="avatar"
+              render={({ field: { onChange } }) => (
+                <FormControl
+                  className="w-full"
+                  labelText="Avatar URL"
+                  placeholder="https://avatar-link.com"
+                  id="avatar"
+                  defaultValue={userData.avatar || ''}
+                  onChange={onChange}
+                />
+              )}
+            />
+            <Image
+              className="border rounded-full content-center"
+              src={avatar ? getImageUrl(lastName, avatar) : DEFAULT_AVATAR}
+              alt="new-user-avatar"
+              width={48}
+              height={48}
+            />
+          </div>
         </div>
       </div>
+
       <div className="mt-6 flex justify-end gap-4">
         <Link
           href={PAGE_ROUTES.USER_LIST}
