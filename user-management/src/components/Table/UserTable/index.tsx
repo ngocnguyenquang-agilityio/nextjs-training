@@ -76,7 +76,7 @@ export const UserTable = () => {
             <th scope="col" className="px-6 py-3">
               Entry date
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="px-6 py-3 text-center">
               Actions
             </th>
           </tr>
@@ -102,7 +102,7 @@ export const UserTable = () => {
               <td className="px-6 py-4">{phone}</td>
               <td className="px-6 py-4">{entryDate.substring(0, 10)}</td>
               <td className="px-6 py-4">
-                <div className="flex gap-3">
+                <div className="flex gap-3 justify-center">
                   <Link
                     href={PAGE_ROUTES.USER_DETAIL(id!)}
                     className="group rounded-md border p-2 hover:bg-blue-400"
