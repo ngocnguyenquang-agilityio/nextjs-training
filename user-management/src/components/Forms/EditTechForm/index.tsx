@@ -38,7 +38,7 @@ export const EditTechForm = ({ id }: EditTechFormProps) => {
   const {
     handleSubmit,
     control,
-    formState: { errors }
+    formState: { errors, isDirty }
   } = useForm<IFormInput>({ values: data });
 
   const { trigger: editTech, isMutating: isEditTechMutating } = useSWRMutation(API_ROUTER.TECH_DETAIL(id), putMethod);
@@ -147,7 +147,7 @@ export const EditTechForm = ({ id }: EditTechFormProps) => {
         <Button type="button" variant="danger" disabled={isDeleteTechMutating} onClick={openModal}>
           Delete
         </Button>
-        <Button disabled={isEditTechMutating} type="submit">
+        <Button disabled={isEditTechMutating || !isDirty} type="submit">
           Save
         </Button>
         {isShowModal && (

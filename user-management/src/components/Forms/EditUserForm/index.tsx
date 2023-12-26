@@ -61,7 +61,7 @@ export const EditUserForm = ({ id }: EditUserFormProps) => {
   const {
     handleSubmit,
     control,
-    formState: { errors }
+    formState: { errors, isDirty }
   } = useForm<IFormInput>({ values: userData });
 
   const { trigger: editUser, isMutating: isEditMutating } = useSWRMutation(API_ROUTER.USER_DETAIL(id), putMethod);
@@ -263,7 +263,7 @@ export const EditUserForm = ({ id }: EditUserFormProps) => {
         <Button type="button" variant="danger" disabled={isDeleteMutating} onClick={openModal}>
           Delete
         </Button>
-        <Button disabled={isEditMutating} type="submit">
+        <Button disabled={isEditMutating || !isDirty} type="submit">
           Save
         </Button>
         {isShowModal && (

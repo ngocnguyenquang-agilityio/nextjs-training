@@ -27,7 +27,7 @@ export const CreateTechForm = () => {
   const {
     handleSubmit,
     control,
-    formState: { errors }
+    formState: { errors, isDirty }
   } = useForm<IFormInput>({
     defaultValues: {
       logo: '',
@@ -103,7 +103,7 @@ export const CreateTechForm = () => {
         >
           Cancel
         </Link>
-        <Button disabled={isMutating} type="submit">
+        <Button disabled={isMutating || !isDirty} type="submit">
           Create Tech
         </Button>
       </div>
